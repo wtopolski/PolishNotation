@@ -1,0 +1,9 @@
+/bin
+/out
+/gen
+/obj
+/.idea
+*.iml
+build.xml
+ant.properties
+local.properties
