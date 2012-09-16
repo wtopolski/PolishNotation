@@ -7,7 +7,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 
     static {
-        System.loadLibrary("JniHelper");
+        System.loadLibrary("polish-prefix-notation");
     }
 
     @Override

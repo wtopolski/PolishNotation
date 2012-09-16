@@ -18,7 +18,7 @@ JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_ppn_JniHelper_convertToPrefi
 /*
  * Class:     pl_wtopolski_android_ppn_JniHelper
  * Method:    countValueFromPrefixNotation
- * Signature: (Ljava/lang/String;)J
+ * Signature: (Ljava/lang/String;)D
  */
 JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_ppn_JniHelper_countValueFromPrefixNotation
   (JNIEnv *, jclass, jstring);
