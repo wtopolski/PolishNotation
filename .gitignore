@@ -2,6 +2,7 @@
 /out
 /gen
 /obj
+/target
 /.idea
 *.iml
 build.xml
