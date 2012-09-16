@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.wtopolski.android</groupId>
     <artifactId>polish-prefix-notation</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>apk</packaging>
     <name>PolishPrefixNotation</name>
 
@@ -17,7 +17,7 @@
         <connection>scm:git:git@github.com:wtopolski/PolishPrefixNotation.git</connection>
         <developerConnection>scm:git:git@github.com:wtopolski/PolishPrefixNotation.git</developerConnection>
         <url>scm:git:git@github.com:wtopolski/PolishPrefixNotation.git</url>
-      <tag>v0.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <build>
