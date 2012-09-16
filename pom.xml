@@ -17,9 +17,9 @@
     </organization>
 
     <scm>
-        <connection>scm:git@github.com:wtopolski/PolishPrefixNotation.git</connection>
-        <developerConnection>scm:git@github.com:wtopolski/PolishPrefixNotation.git</developerConnection>
-        <url>scm:git@github.com:wtopolski/PolishPrefixNotation.git</url>
+        <connection>scm:git:git@github.com:wtopolski/PolishPrefixNotation.git</connection>
+        <developerConnection>scm:git:git@github.com:wtopolski/PolishPrefixNotation.git</developerConnection>
+        <url>scm:git:git@github.com:wtopolski/PolishPrefixNotation.git</url>
     </scm>
 
     <build>
