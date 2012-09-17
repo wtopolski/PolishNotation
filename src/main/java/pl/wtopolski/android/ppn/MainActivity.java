@@ -15,10 +15,14 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        String o = JniHelper.convertToPrefixNotation("1 + ( 3 / 2 ) + 5");
-        double  result = JniHelper.countValueFromPrefixNotation(o);
+        String request = "-1.1 + ( 3 / 2 ) + 5 + 6.5";
+        String response = JniHelper.convertToPrefixNotation(request);
+        double result = JniHelper.countValueFromPrefixNotation(response);
 
         TextView tv = (TextView) findViewById(R.id.test);
-        tv.setText("result: " + result + " [" + o + "]");
+        tv.setTextSize(22);
+        tv.setPadding(4, 4, 4, 4);
+        tv.setTextScaleX(0.9f);
+        tv.setText("request: " + request + "\nresponse: " + response + "\nresult: " + result);
     }
 }
