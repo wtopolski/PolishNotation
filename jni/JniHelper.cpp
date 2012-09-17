@@ -9,65 +9,6 @@
 
 using namespace std;
 
-// Zamiana ciagu charow na liczby
-double change(char *number)
-{
-	// Zapamietuje adres poczatku napisu
-	char *temp = number;
-	// Czy number jest sinusem
-	bool flag_sinus = false;
-	bool flag_power = false;
-	bool flag_minus = false;
-
-	// Sprawdzam czy jest to zlozone expression
-	switch (*number)
-	{
-		case 's':
-		{
-			// Usuwam char sinusa i ustawiam flage
-			*number++ = '0'; //ustawiam wskaznik na nastepnym charu
-			flag_sinus = true;
-		}
-		break;
-		case 'p':
-		{
-			// Usuwam char potegi i ustawiam flage
-			*number++ = '0'; //ustawiam wskaznik na nastepnym charu
-			flag_power = true;
-		}
-		break;
-	}
-	// Jesli number jest ujemna
-	if (*number == '-')
-	{
-		*number = '0';
-		flag_minus = true;
-	}
-	// Przywracam adres poczatku do wskaznika
-	number = temp;
-	// Zmienna potegi
-	double i = 0.1;
-	// Zmienna przechowujaca result
-	double result = 0.0;
-	// Obliczam maksymalna potege
-	while (*number++) i *= 10.0;
-	// Przywracam adres poczatku do wskaznika
-	number = temp;
-	// Przechodze po kolejnych znakach
-	while (*number)
-	{
-		// Obliczam cyfre i mnoze ja przez potege
-		result += static_cast<double>( static_cast<int>(*number++) - static_cast<int>('0') ) * i;
-		i /= 10.0;
-	}
-	// Zwracam przekonwertowana liczbe
-	result = (flag_minus) ? -result : result;
-	result = (flag_sinus) ? sin(result) : result;
-	result = (flag_power) ? result*result : result;
-
-	return result;
-}
-
 // Funkcja liczaca wartosc wyrazenia postfiksowego
 double post2suma(char *expression)
 {
@@ -87,7 +28,8 @@ double post2suma(char *expression)
 				number = temp_number; // Powracam na poczatek
 				if (*number != '\0') // Jesli brak napisu nie konertuj
 				{
-					heap.push(change(number));
+				    double value = atof(number);
+					heap.push(value);
 				}
 				i = expression_length; // samo break wyszlo by tylko z switch
 			}
@@ -100,7 +42,8 @@ double post2suma(char *expression)
 				number = temp_number;
 				if (*number != '\0')
 				{
-					heap.push(change(number));
+				    double value = atof(number);
+					heap.push(value);
 				}
 			}
 			break;
