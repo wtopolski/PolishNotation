@@ -2,10 +2,13 @@
 #include <string.h>
 #include <android/log.h>
 #include <stack>
+#include <string>
+#include <algorithm>
 #include <cmath>
 #include "pl_wtopolski_android_ppn_JniHelper.h"
 
 #define DEBUG_TAG "JNI_HELPER"
+#define LOGD(x...) __android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, x)
 
 using namespace std;
 
@@ -208,47 +211,39 @@ void conversion(char *expression, int start, int stop)
 	conversion(expression, b_start, b_stop);
 }
 
-void infiks2postfiks(char *expression, int start, int stop)
+string convertToNotation(string value)
 {
-	// Zamieniam postac infoksowa w postfiksowa
-	conversion(expression, start, stop);
+	char *expression = new char[value.size() + 1];
+    strcpy(expression, value.c_str());
 
-	// Usuwam nawiasy
-	int offset = 0;
-	for (int i = start; i <= stop; i++)
-	{
-		if (expression[i] == '(' || expression[i] == ')')
-		{
-			offset -= 2;
-		}
-		else
-		{
-			expression[i + offset] = expression[i];
-		}
-	}
-	expression[stop + offset + 1] = '\0';
+	conversion(expression, 0, strlen(expression) - 1);
+
+    string response(expression);
+	replace(response.begin(), response.end(), '(', ' ');
+	replace(response.begin(), response.end(), ')', ' ');
+
+    return response;
 }
 
 JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_ppn_JniHelper_convertToPrefixNotation(JNIEnv *env, jclass cls, jstring inputJValue)
 {
     jboolean isCopy;
     const char* originCharValue = env->GetStringUTFChars(inputJValue, &isCopy);
-    __android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, "INPUT: %s", originCharValue);
-    char charOutput[strlen(originCharValue)];
-    strcpy(charOutput, originCharValue);
+    string input(originCharValue);
     env->ReleaseStringUTFChars(inputJValue, originCharValue);
 
-	infiks2postfiks(charOutput, 0, strlen(charOutput) - 1);
-	__android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, "OUTPUT %s", charOutput);
+    LOGD("CTPN INPUT: %s", input.c_str());
+	string output = convertToNotation(input);
+	LOGD("CTPN OUTPUT %s", output.c_str());
 
-    return env->NewStringUTF(charOutput);
+    return env->NewStringUTF(output.c_str());
 }
 
 JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_ppn_JniHelper_countValueFromPrefixNotation(JNIEnv *env, jclass cls, jstring inputJValue)
 {
     jboolean isCopy;
     const char* originCharValue = env->GetStringUTFChars(inputJValue, &isCopy);
-    __android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, "INPUT: %s", originCharValue);
+    LOGD("INPUT2: %s", originCharValue);
     char charOutput[strlen(originCharValue)];
     strcpy(charOutput, originCharValue);
     env->ReleaseStringUTFChars(inputJValue, originCharValue);
