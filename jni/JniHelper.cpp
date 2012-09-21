@@ -5,6 +5,10 @@
 #include <string>
 #include <algorithm>
 #include <cmath>
+#include <vector>
+#include <iostream>
+#include <sstream>
+#include <iterator>
 #include "pl_wtopolski_android_ppn_JniHelper.h"
 
 #define DEBUG_TAG "JNI_HELPER"
@@ -12,114 +16,58 @@
 
 using namespace std;
 
-// Funkcja liczaca wartosc wyrazenia postfiksowego
-double post2suma(char *expression)
+double count(string sentence)
 {
-	int expression_length = strlen(expression);
+    vector<string> tokens;
     stack<double> heap;
-	char *number = new char[20];
-	char *temp_number = number;
 
-	for (int i = 0; i < expression_length; i++)
-	{
-		switch (expression[i])
-		{
-			// Koniec napisu
-			case '\0':
-			{
-				*number = '\0'; // Konce napis w liczbie
-				number = temp_number; // Powracam na poczatek
-				if (*number != '\0') // Jesli brak napisu nie konertuj
-				{
-				    double value = atof(number);
-					heap.push(value);
-				}
-				i = expression_length; // samo break wyszlo by tylko z switch
-			}
-			break;
+    istringstream iss(sentence);
+    copy(istream_iterator<string>(iss), istream_iterator<string>(), back_inserter<vector<string> >(tokens));
 
-			// Separator
-			case ' ':
-			{
-				*number = '\0';
-				number = temp_number;
-				if (*number != '\0')
-				{
-				    double value = atof(number);
-					heap.push(value);
-				}
-			}
-			break;
+    vector<string>::iterator it;
+    for( it=tokens.begin(); it!=tokens.end(); ++it )
+    {
+        string token = *it;
+        LOGD("token: %s", token.c_str());
 
-			// Operacja dodawania
-			case '+':
-			{
-				double a = heap.top();
-				heap.pop();
-				double b = heap.top();
-				heap.pop();
-
-				heap.push(a + b);
-			}
-			break;
-
-			// Operacja odejmowania
-			case '-':
-			{
-				// Odejmowanie
-				if (expression[i+1] == '\0' || expression[i+1] == ' ')
-				{
-				    double a = heap.top();
-				    heap.pop();
-				    double b = heap.top();
-				    heap.pop();
-
-					// Z racji iz sa zdejmowane w odwrotnej kolejnosci
-					// wiec prawidlowa operacja jest b operacja a;
-					heap.push(b - a);
-				}
-				// Liczba ujemna
-				else
-				{
-					*number++ = expression[i];
-				}
-			}
-			break;
-
-			// Operacja mnozenia
-			case '*':
-			{
-				double a = heap.top();
-				heap.pop();
-				double b = heap.top();
-				heap.pop();
-
-				heap.push(a * b);
-			}
-			break;
-
-			// Operacja dzielenia
-			case '/':
-			{
-				double a = heap.top();
-				heap.pop();
-				double b = heap.top();
-				heap.pop();
-
-				// Z racji iz sa zdejmowane w odwrotnej kolejnosci
-				// wiec prawidlowa operacja jest b operacja a;
-				heap.push(b / a);
-			}
-			break;
-
-			// Normalny znak
-			default:
-			{
-				*number++ = expression[i];
-			}
-		}
-	}
-	delete [] number;
+        if (token.compare("+") == 0)
+        {
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(a + b);
+        }
+        else if (token.compare("-") == 0)
+        {
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(b - a);
+        }
+        else if (token.compare("*") == 0)
+        {
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(a - b);
+        }
+        else if (token.compare("/") == 0)
+        {
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(b / a);
+        }
+        else
+        {
+            double value = atof(token.c_str());
+        	heap.push(value);
+        }
+    }
 
 	double res = heap.top();
 	heap.pop();
@@ -135,11 +83,15 @@ void conversion(char *expression, int start, int stop)
 	for (int i = start; i <= stop; i++)
 	{
 		if (expression[i] == ' ')
+		{
 			next = true;
+		}
 	}
 
 	if (next == false)
+	{
 		return;
+    }
 
 	// Omijam znaki nawiasu dla podoperacji
 	int counter_bracket = 0;
@@ -147,11 +99,15 @@ void conversion(char *expression, int start, int stop)
 	if (expression[start] == '(' && expression[stop] == ')')
 	{
 		for (int i = start; i <= stop; i++)
-			{
+		{
 			if (expression[i] == '(')
+			{
 				counter_bracket++;
+			}
 			if (expression[i] == ')')
+			{
 				counter_bracket--;
+			}
 			// Jesli mamy oklajacy nawias to go pomijamy
 			if (counter_bracket == 0)
 			{
@@ -243,10 +199,12 @@ JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_ppn_JniHelper_countValueFrom
 {
     jboolean isCopy;
     const char* originCharValue = env->GetStringUTFChars(inputJValue, &isCopy);
-    LOGD("INPUT2: %s", originCharValue);
-    char charOutput[strlen(originCharValue)];
-    strcpy(charOutput, originCharValue);
+    string input(originCharValue);
     env->ReleaseStringUTFChars(inputJValue, originCharValue);
 
-    return post2suma(charOutput);
+    LOGD("CVFPN INPUT: %s", input.c_str());
+	double output = count(input);
+	LOGD("CVFPN OUTPUT %f", output);
+
+    return output;
 }
