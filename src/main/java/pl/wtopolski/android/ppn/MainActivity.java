@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        String request = "-1.1 + ( 3 / 2 ) + 5 + 6.5";
+        String request = "-1.1+3/2+5+6.5";
         String response = JniHelper.convertToPrefixNotation(request);
         double result = JniHelper.countValueFromPrefixNotation(response);
 

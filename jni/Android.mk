@@ -5,6 +5,11 @@ include $(CLEAR_VARS)
 LOCAL_LDLIBS := -llog
 
 LOCAL_MODULE    := polish-prefix-notation
-LOCAL_SRC_FILES := JniHelper.cpp
+LOCAL_SRC_FILES := token.cpp \
+bracket.cpp \
+operand.cpp \
+operator.cpp \
+support.cpp  \
+JniHelper.cpp \
 
 include $(BUILD_SHARED_LIBRARY)

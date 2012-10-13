@@ -9,12 +9,80 @@
 #include <iostream>
 #include <sstream>
 #include <iterator>
+#include "headers/tokentype.h"
+#include "headers/token.h"
+#include "headers/operand.h"
+#include "headers/operator.h"
+#include "headers/bracket.h"
+#include "headers/support.h"
 #include "pl_wtopolski_android_ppn_JniHelper.h"
 
 #define DEBUG_TAG "JNI_HELPER"
 #define LOGD(x...) __android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, x)
 
 using namespace std;
+
+void process_operator(vector<Token*>& output, Operator* op)
+{
+	Token* last = output.back();
+	if (last->get_type() != Operator_Type)
+	{
+		output.push_back(op);
+	}
+	else
+	{
+		// todo
+		output.push_back(op);
+	}
+}
+
+void process_operand(vector<Token*>& output, Operand* op)
+{
+	if (output.empty())
+	{
+		output.push_back(op);
+		return;
+	}
+
+	Token* last = output.back();
+	if (last->get_type() == Operand_Type)
+	{
+		output.push_back(op);
+	}
+	else
+	{
+		int operator_count = 0;
+		int operand_count = 0;
+		vector<Token*>::iterator it = output.end();
+		bool b = true;
+
+		for (int i = output.size() - 1; i >= 0; i--)
+		{
+			switch (output[i]->get_type())
+			{
+				case Operand_Type:
+					operand_count++;
+					b = false;
+				break;
+				case Operator_Type:
+					operator_count++;
+					if (b) {
+						it -= 1;
+					}
+				break;
+			}
+		}
+
+		if (operator_count >= operand_count)
+		{
+			output.insert(it, op);
+		}
+		else
+		{
+			output.push_back(op);
+		}
+	}
+}
 
 double count(string sentence)
 {
@@ -188,8 +256,62 @@ JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_ppn_JniHelper_convertToPrefi
     string input(originCharValue);
     env->ReleaseStringUTFChars(inputJValue, originCharValue);
 
-    LOGD("CTPN INPUT: %s", input.c_str());
-	string output = convertToNotation(input);
+    LOGD("CTPN INPUT BEFORE: %s", input.c_str());
+
+	vector<Token*> tokens;
+    Support::split(tokens, input);
+
+    string input_after;
+    vector<Token*>::iterator it;
+    for (it=tokens.begin(); it!=tokens.end(); ++it)
+    {
+		Token* t = *it;
+		switch (t->get_type())
+		{
+		case Operand_Type:
+		    input_after.append(t->get_value());
+		    input_after.append(" ");
+//			cout << "Operand  [ " << t->get_value() << " ]" << endl;
+//			process_operand(output, (Operand*)t);
+		break;
+		case Operator_Type:
+		    input_after.append(t->get_value());
+		    input_after.append(" ");
+//			cout << "Operator [ " << t->get_value() << " ]" << endl;
+//			process_operator(output, (Operator*)t);
+		break;
+		case Bracket_Type:
+		    input_after.append(t->get_value());
+		    input_after.append(" ");
+//			cout << "Bracket  [ " << t->get_value() << " ]" << endl;
+		break;
+		}
+
+		delete t;
+	}
+
+
+	/*
+	Support::swap(tokens, 1, 3);
+
+	string o1value = "+";
+	Token* t1 = new Operator(o1value);
+	string o2value = "*";
+	Token* t2 = new Operator(o2value);
+
+	Operator* o1 = (Operator*) t1;
+	Operator* o2 = (Operator*) t2;
+
+	cout << "result: " << o1->is_equal_or_greater(*o2) << endl;
+	cout << "result: " << o2->is_equal_or_greater(*o1) << endl;
+	cout << "result: " << o1->is_equal_or_greater(*o1) << endl;
+	cout << "result: " << o2->is_equal_or_greater(*o2) << endl;
+	*/
+
+
+    LOGD("CTPN INPUT AFTER: %s", input_after.c_str());
+
+    string output = convertToNotation(input);
 	LOGD("CTPN OUTPUT %s", output.c_str());
 
     return env->NewStringUTF(output.c_str());
