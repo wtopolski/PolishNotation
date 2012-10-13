@@ -34,7 +34,6 @@ double count(string sentence)
     for( it=tokens.begin(); it!=tokens.end(); ++it )
     {
         string token = *it;
-        LOGD("token: %s", token.c_str());
 
         if (token.compare("+") == 0)
         {
@@ -43,6 +42,7 @@ double count(string sentence)
             double b = heap.top();
             heap.pop();
             heap.push(a + b);
+            LOGD("%f + %f", a, b);
         }
         else if (token.compare("-") == 0)
         {
@@ -51,6 +51,7 @@ double count(string sentence)
             double b = heap.top();
             heap.pop();
             heap.push(b - a);
+            LOGD("%f - %f", b, a);
         }
         else if (token.compare("*") == 0)
         {
@@ -58,7 +59,8 @@ double count(string sentence)
             heap.pop();
             double b = heap.top();
             heap.pop();
-            heap.push(a - b);
+            heap.push(a * b);
+            LOGD("%f * %f", a, b);
         }
         else if (token.compare("/") == 0)
         {
@@ -67,11 +69,13 @@ double count(string sentence)
             double b = heap.top();
             heap.pop();
             heap.push(b / a);
+            LOGD("%f / %f", b, a);
         }
         else
         {
             double value = atof(token.c_str());
         	heap.push(value);
+            LOGD("add: %f", value);
         }
     }
 
