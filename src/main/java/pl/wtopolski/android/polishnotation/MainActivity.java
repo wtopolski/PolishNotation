@@ -1,4 +1,4 @@
-package pl.wtopolski.android.ppn;
+package pl.wtopolski.android.polishnotation;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.widget.TextView;
 public class MainActivity extends Activity {
 
     static {
-        System.loadLibrary("polish-prefix-notation");
+        System.loadLibrary("polish-notation");
     }
 
     @Override
@@ -16,8 +16,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
 
         String request = "-1.1+3/2+5+6.5";
-        String response = JniHelper.convertToPrefixNotation(request);
-        double result = JniHelper.countValueFromPrefixNotation(response);
+        String response = JniHelper.convertToNotation(request);
+        double result = JniHelper.countValueFromNotation(response);
 
         TextView tv = (TextView) findViewById(R.id.test);
         tv.setTextSize(22);

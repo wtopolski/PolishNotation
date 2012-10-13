@@ -4,7 +4,6 @@
 #include <string>
 #include "tokentype.h"
 #include "token.h"
-#include "support.h"
 
 using namespace std;
 

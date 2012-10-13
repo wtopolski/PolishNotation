@@ -4,7 +4,7 @@ include $(CLEAR_VARS)
 
 LOCAL_LDLIBS := -llog
 
-LOCAL_MODULE    := polish-prefix-notation
+LOCAL_MODULE    := polish-notation
 LOCAL_SRC_FILES := token.cpp \
 bracket.cpp \
 operand.cpp \
