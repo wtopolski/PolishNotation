@@ -12,7 +12,7 @@ class Operator : public Token
 public:
 	Operator(string& _val);
 	Token_Type get_type();
-	bool is_equal_or_greater(Operator& op);
+	bool is_greater_then(Operator& op);
 };
 
 #endif

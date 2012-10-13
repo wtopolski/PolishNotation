@@ -62,7 +62,7 @@ int Support::process_operator(vector<Token*>& output, Operator* new_operator)
         Operator* op_right = (Operator*) output[index_of_right];
         Operator* op_left = (Operator*) output[index_of_left];
 
-        if (op_right->is_equal_or_greater(*op_left))
+        if (op_right->is_greater_then(*op_left))
         {
             Support::swap(output, index_of_left, index_of_right);
             index_of_right--;

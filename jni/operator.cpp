@@ -13,19 +13,16 @@ Token_Type Operator::get_type()
 	return Operator_Type; 
 }
 
-bool Operator::is_equal_or_greater(Operator& op)
+bool Operator::is_greater_then(Operator& op)
 {
 	string op_value = op.get_value();
 	char op_char = op_value.at(0);
 	char this_char = val.at(0);
 
-	if (op_char == Support::ADDITION || op_char == Support::SUBTRACTION)
+	if ((this_char == Support::MULTIPLICATION || this_char == Support::DIVISION)
+	    && (op_char == Support::ADDITION || op_char == Support::SUBTRACTION))
 	{
-		return true;
-	}
-	else if (this_char == Support::MULTIPLICATION || this_char == Support::DIVISION)
-	{
-		return true;
+	    return true;
 	}
 
 	return false;
