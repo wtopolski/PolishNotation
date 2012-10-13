@@ -3,10 +3,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.wtopolski.android</groupId>
-    <artifactId>polish-prefix-notation</artifactId>
+    <artifactId>polish-notation</artifactId>
     <version>0.0.3-SNAPSHOT</version>
     <packaging>apk</packaging>
-    <name>PolishPrefixNotation</name>
+    <name>PolishNotation</name>
 
     <organization>
         <name>Wojciech Topolski</name>
@@ -14,9 +14,9 @@
     </organization>
 
     <scm>
-        <connection>scm:git:git@github.com:wtopolski/PolishPrefixNotation.git</connection>
-        <developerConnection>scm:git:git@github.com:wtopolski/PolishPrefixNotation.git</developerConnection>
-        <url>scm:git:git@github.com:wtopolski/PolishPrefixNotation.git</url>
+        <connection>scm:git:git@github.com:wtopolski/PolishNotation.git</connection>
+        <developerConnection>scm:git:git@github.com:wtopolski/PolishNotation.git</developerConnection>
+        <url>scm:git:git@github.com:wtopolski/PolishNotation.git</url>
       <tag>HEAD</tag>
   </scm>
 
@@ -108,9 +108,9 @@
                         </goals>
                         <configuration>
                             <javahClassNames>
-                                <javahClassName>pl.wtopolski.android.ppn.JniHelper</javahClassName>
+                                <javahClassName>pl.wtopolski.android.polishnotation.JniHelper</javahClassName>
                             </javahClassNames>
-                            <javahOutputDirectory>./jni</javahOutputDirectory>
+                            <javahOutputDirectory>./jni/headers</javahOutputDirectory>
                         </configuration>
                     </execution>
                 </executions>

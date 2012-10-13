@@ -30,6 +30,9 @@ public:
 	static const char SPACE = ' ';
 	
 	static void split(vector<Token*>& tokens, string& input);
+	static void process_operand(vector<Token*>& output, Operand* op, int place);
+	static int process_operator(vector<Token*>& output, Operator* op);
+	static void convert_to_postfix_notation(vector<Token*>& postfix_tokens, vector<Token*>& infix_tokens);
 	static void swap(vector<Token*>& tokens, int pos_el_1, int pos_el_2);
 	static void add_token(vector<Token*>& tokens, string& value);
 	static Token_Type get_token_type(string& value);
