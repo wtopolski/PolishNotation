@@ -1,4 +1,3 @@
-#include <android/log.h>
 #include <string.h>
 #include <stack>
 #include <string>
@@ -12,13 +11,88 @@
 #include "headers/token.h"
 #include "headers/operand.h"
 #include "headers/operator.h"
-#include "headers/bracket.h"
 #include "headers/support.h"
 
-#define DEBUG_TAG "JNI_HELPER"
-#define LOGD(x...) __android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, x)
-
 using namespace std;
+
+double Support::count(string& sentence)
+{
+    vector<string> tokens;
+    stack<double> heap;
+
+    istringstream iss(sentence);
+    copy(istream_iterator<string>(iss), istream_iterator<string>(), back_inserter<vector<string> >(tokens));
+
+    vector<string>::iterator it;
+    for( it=tokens.begin(); it!=tokens.end(); ++it )
+    {
+        string token = *it;
+
+        if (token.compare("+") == 0)
+        {
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(a + b);
+        }
+        else if (token.compare("-") == 0)
+        {
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(b - a);
+        }
+        else if (token.compare("*") == 0)
+        {
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(a * b);
+        }
+        else if (token.compare("/") == 0)
+        {
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(b / a);
+        }
+        else
+        {
+            double value = atof(token.c_str());
+        	heap.push(value);
+        }
+    }
+
+	double res = heap.top();
+	heap.pop();
+
+	return res;
+}
+
+string Support::convertToNotation(string& input)
+{
+    vector<Token*> infix_tokens;
+    Support::split(infix_tokens, input);
+
+    vector<Token*> postfix_tokens;
+    Support::convert_to_postfix_notation(postfix_tokens, infix_tokens);
+
+    string output;
+    vector<Token*>::iterator it;
+    for (it=postfix_tokens.begin(); it!=postfix_tokens.end(); ++it)
+    {
+                Token* token = *it;
+                output.append(token->get_value());
+                output.append(" ");
+                delete token;
+        }
+
+    return output;
+}
 
 // Swap two elements in vector [x][y][z] >> [x][z][y]
 void Support::swap(vector<Token*>& tokens, int pos_el_1, int pos_el_2)
@@ -111,11 +185,9 @@ void Support::convert_to_postfix_notation(vector<Token*>& postfix_tokens, vector
 		switch (token->get_type())
 		{
 		case Operand_Type:
-			LOGD("Operand  [%s]", token->get_value().c_str());
 			process_operand(postfix_tokens, (Operand*)token, last_place_of_operator);
 		break;
 		case Operator_Type:
-			LOGD("Operator  [%s]", token->get_value().c_str());
 			last_place_of_operator = process_operator(postfix_tokens, (Operator*)token);
 		break;
 		}
@@ -133,9 +205,7 @@ void Support::split(vector<Token*>& tokens, string& input)
 		{
 			continue;
 		}
-		else if (ch == BRACKET_START 
-			|| ch == BRACKET_STOP 
-			|| ch == MULTIPLICATION 
+		else if (ch == MULTIPLICATION 
 			|| ch == ADDITION 
 			|| ch == DIVISION 
 			|| (ch == SUBTRACTION && !s.empty()))
@@ -168,9 +238,6 @@ void Support::add_token(vector<Token*>& tokens, string& value)
 	case Operator_Type:
 		tokens.push_back(new Operator(value));
 	break;
-	case Bracket_Type:
-		tokens.push_back(new Bracket(value));
-	break;
 	}
 	value.clear();
 }
@@ -183,10 +250,6 @@ Token_Type Support::get_token_type(string& value)
 		if (ch == ADDITION || ch == SUBTRACTION || ch == MULTIPLICATION || ch == DIVISION)
 		{
 			return Operator_Type;
-		}
-		else if (ch == BRACKET_START || ch == BRACKET_STOP)
-		{
-			return Bracket_Type;
 		}
 		else if (ch == SPACE)
 		{
