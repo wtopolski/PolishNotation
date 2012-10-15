@@ -14,7 +14,6 @@
 #include "token.h"
 #include "operand.h"
 #include "operator.h"
-#include "bracket.h"
 
 using namespace std;
 
@@ -29,6 +28,8 @@ public:
 	static const char BRACKET_STOP = ')';
 	static const char SPACE = ' ';
 	
+	static double count(string& sentence);
+	static string convertToNotation(string& input);
 	static void split(vector<Token*>& tokens, string& input);
 	static void process_operand(vector<Token*>& output, Operand* op, int place);
 	static int process_operator(vector<Token*>& output, Operator* op);
