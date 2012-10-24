@@ -112,7 +112,7 @@
                         </goals>
                         <configuration>
                             <javahClassNames>
-                                <javahClassName>pl.wtopolski.android.polishnotation.JniHelper</javahClassName>
+                                <javahClassName>pl.wtopolski.android.polishnotation.support.JniHelper</javahClassName>
                             </javahClassNames>
                             <javahOutputDirectory>./jni/headers</javahOutputDirectory>
                         </configuration>
@@ -169,6 +169,16 @@
                 <artifactId>support-v4</artifactId>
                 <version>r7</version>
             </dependency>
+            <dependency>
+                <groupId>com.github.tony19</groupId>
+                <artifactId>logback-android-classic</artifactId>
+                <version>1.0.7-1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.1</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -186,6 +196,14 @@
         <dependency>
             <groupId>com.google.android</groupId>
             <artifactId>support-v4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.tony19</groupId>
+            <artifactId>logback-android-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
         </dependency>
     </dependencies>
 
