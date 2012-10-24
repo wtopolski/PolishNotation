@@ -13,4 +13,23 @@
             </intent-filter>
         </activity>
     </application>
+
+    <logback>
+        <configuration>
+            <appender
+                    name="LOGCAT"
+                    class="ch.qos.logback.classic.android.LogcatAppender" >
+                <tagEncoder>
+                    <pattern>PolishNotation</pattern>
+                </tagEncoder>
+                <encoder>
+                    <pattern>%logger{0} [%method] %msg%n</pattern>
+                </encoder>
+            </appender>
+
+            <root level="TRACE" >
+                <appender-ref ref="LOGCAT" />
+            </root>
+        </configuration>
+    </logback>
 </manifest> 
