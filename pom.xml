@@ -72,6 +72,10 @@
                             <keypass>${keystore.keypass}</keypass>
                             <alias>${keystore.alias}</alias>
                             <verbose>true</verbose>
+                            <arguments>
+                                <argument>-sigalg</argument><argument>MD5withRSA</argument>
+                                <argument>-digestalg</argument><argument>SHA1</argument>
+                            </arguments>
                             <archive>${project.build.directory}/${project.build.finalName}.apk</archive>
                         </configuration>
                     </execution>
