@@ -14,14 +14,14 @@
 #include "headers/operand.h"
 #include "headers/operator.h"
 #include "headers/support.h"
-#include "headers/pl_wtopolski_android_polishnotation_JniHelper.h"
+#include "headers/pl_wtopolski_android_polishnotation_support_JniHelper.h"
 
-#define DEBUG_TAG "JNI_HELPER"
+#define DEBUG_TAG "PolishNotation"
 #define LOGD(x...) __android_log_print(ANDROID_LOG_DEBUG, DEBUG_TAG, x)
 
 using namespace std;
 
-JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_polishnotation_JniHelper_convertToNotation(JNIEnv *env, jclass cls, jstring inputJValue)
+JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_convertToNotation(JNIEnv *env, jclass cls, jstring inputJValue)
 {
     jboolean isCopy;
     const char* originCharValue = env->GetStringUTFChars(inputJValue, &isCopy);
@@ -33,7 +33,7 @@ JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_polishnotation_JniHelper_con
     return env->NewStringUTF(output.c_str());
 }
 
-JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_polishnotation_JniHelper_countValueFromNotation(JNIEnv *env, jclass cls, jstring inputJValue)
+JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_countValueFromNotation(JNIEnv *env, jclass cls, jstring inputJValue)
 {
     jboolean isCopy;
     const char* originCharValue = env->GetStringUTFChars(inputJValue, &isCopy);

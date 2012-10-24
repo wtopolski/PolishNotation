@@ -1,4 +1,4 @@
-package pl.wtopolski.android.polishnotation;
+package pl.wtopolski.android.polishnotation.support;
 
 /**
  * Supports calculation operations.
