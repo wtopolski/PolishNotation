@@ -13,7 +13,7 @@ public class MainActivity extends Activity {
     private TextView test;
 
     static {
-        System.loadLibrary("polish-notation");
+        System.loadLibrary("polish-notation-app");
     }
 
     @Override
