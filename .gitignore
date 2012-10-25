@@ -1,8 +1,12 @@
 /bin
 /out
-/gen
 /obj
-/target
+/polish-notation-app/gen
+/polish-notation-app/target
+/polish-notation-app/.idea
+/polish-notation-test/gen
+/polish-notation-test/target
+/polish-notation-test/.idea
 /.idea
 *.iml
 build.xml
