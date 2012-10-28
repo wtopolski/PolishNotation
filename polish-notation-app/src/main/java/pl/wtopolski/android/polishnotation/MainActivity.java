@@ -5,10 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pl.wtopolski.android.polishnotation.support.JniHelper;
 import pl.wtopolski.android.polishnotation.support.NotationUtil;
 
 public class MainActivity extends Activity {
+    private static final Logger LOG = LoggerFactory.getLogger(NotationUtil.class);
+
     private EditText edit;
     private TextView test;
 
@@ -33,13 +37,17 @@ public class MainActivity extends Activity {
     public void action(View view) {
         String request = edit.getText().toString();
         String response = null;
+        LOG.debug("Infix: {}", request);
+
         try {
             response = NotationUtil.convertInfixToPostfix(request);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        LOG.debug("Postfix request: {}", response);
         double result = NotationUtil.countFromPostfixNotation(response);
+        LOG.debug("Count result: {}", result);
 
         test.setText("request:\n" + request + "\nresponse:\n" + response + "\nresult:\n" + result);
     }
