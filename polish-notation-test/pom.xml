@@ -2,14 +2,88 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>polish-notation</artifactId>
         <groupId>pl.wtopolski.android</groupId>
         <version>0.0.3-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <groupId>pl.wtopolski.android</groupId>
     <artifactId>polish-notation-test</artifactId>
+    <version>0.0.3-SNAPSHOT</version>
+    <packaging>apk</packaging>
+    <name>PolishNotationTest</name>
 
+    <build>
+        <sourceDirectory>src/main/java</sourceDirectory>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>libs</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>obj</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>out</directory>
+                        </fileset>
+                        <fileset>
+                            <directory>bin</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <configuration>
+                    <extractDuplicates>true</extractDuplicates>
+                    <androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
+                    <attachNativeArtifacts>true</attachNativeArtifacts>
+                </configuration>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android-test</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>pl.wtopolski.android</groupId>
+            <artifactId>polish-notation-app</artifactId>
+            <type>apk</type>
+            <version>0.0.3-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>pl.wtopolski.android</groupId>
+            <artifactId>polish-notation-app</artifactId>
+            <scope>provided</scope>
+            <type>jar</type>
+            <version>0.0.3-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 public class NotationUtil {
-    private static final Logger LOG = LoggerFactory.getLogger(NotationUtil.class);
-
     private static final String TOKEN_PREFIX = "T";
     private static final String TOKEN_MAIN = TOKEN_PREFIX + "0";
 
@@ -21,10 +19,7 @@ public class NotationUtil {
      * @return
      */
     public static double countFromPostfixNotation(String postfix) {
-        LOG.debug("Postfix request: {}", postfix);
-        double result = JniHelper.countValueFromNotation(postfix);
-        LOG.debug("Count result: {}", result);
-        return result;
+        return JniHelper.countValueFromNotation(postfix);
     }
 
     /**
@@ -34,21 +29,14 @@ public class NotationUtil {
      * @throws Exception
      */
     public static String convertInfixToPostfix(String infix) throws Exception {
-        LOG.debug("Infix: {}", infix);
-
         Map<String, String> conversionMap = splitBrackets(infix);
-        LOG.debug("Infix Map: {}", conversionMap);
 
         for (String key : conversionMap.keySet()) {
             String value = JniHelper.convertToNotation(conversionMap.get(key));
             conversionMap.put(key, value);
         }
-        LOG.debug("Postfix Map: {}", conversionMap);
 
-        String postfix = stickFragments(conversionMap);
-        LOG.debug("Postfix: {}", postfix);
-
-        return postfix;
+        return stickFragments(conversionMap);
     }
 
     /**
