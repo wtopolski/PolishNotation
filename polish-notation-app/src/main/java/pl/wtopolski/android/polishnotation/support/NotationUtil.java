@@ -14,12 +14,38 @@ public class NotationUtil {
     private static final String TOKEN_MAIN = TOKEN_PREFIX + "0";
 
     /**
+     * Count value from prefix sentence.
+     * @param postfix
+     * @return
+     */
+    public static double countFromPrefixNotation(String postfix) {
+        return JniHelper.countValueFromPrefixNotation(postfix);
+    }
+
+    /**
+     * Convert infix sentence to prefix sentence.
+     * @param infix sentence
+     * @return prefix sentence
+     * @throws Exception
+     */
+    public static String convertInfixToPrefix(String infix) throws Exception {
+        Map<String, String> conversionMap = splitBrackets(infix);
+
+        for (String key : conversionMap.keySet()) {
+            String value = JniHelper.convertToPrefixNotation(conversionMap.get(key));
+            conversionMap.put(key, value);
+        }
+
+        return stickFragments(conversionMap);
+    }
+
+    /**
      * Count value from postfix sentence.
      * @param postfix
      * @return
      */
     public static double countFromPostfixNotation(String postfix) {
-        return JniHelper.countValueFromNotation(postfix);
+        return JniHelper.countValueFromPostfixNotation(postfix);
     }
 
     /**
@@ -32,7 +58,7 @@ public class NotationUtil {
         Map<String, String> conversionMap = splitBrackets(infix);
 
         for (String key : conversionMap.keySet()) {
-            String value = JniHelper.convertToNotation(conversionMap.get(key));
+            String value = JniHelper.convertToPostfixNotation(conversionMap.get(key));
             conversionMap.put(key, value);
         }
 
