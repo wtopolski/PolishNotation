@@ -28,7 +28,7 @@ JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHe
     string input(originCharValue);
     env->ReleaseStringUTFChars(inputJValue, originCharValue);
     LOGD("Convert To Notation [input: %s]", input.c_str());
-    string output = Support::convertToNotation(input);
+    string output = Support::convert_to_postfix_notation(input);
     LOGD("Convert To Notation [output: %s]", output.c_str());
     return env->NewStringUTF(output.c_str());
 }
@@ -40,7 +40,7 @@ JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHe
     string input(originCharValue);
     env->ReleaseStringUTFChars(inputJValue, originCharValue);
     LOGD("Count Value [input: %s]", input.c_str());
-	double output = Support::count(input);
+	double output = Support::count_postfix(input);
 	LOGD("Count Value [output %f]", output);
     return output;
 }
