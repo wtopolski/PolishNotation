@@ -28,3 +28,18 @@ bool Operator::is_greater_then(Operator& op)
 	return false;
 }
 
+bool Operator::is_greater_or_equal_then(Operator& op)
+{
+	string op_value = op.get_value();
+	char op_char = op_value.at(0);
+	char this_char = val.at(0);
+
+	if ((this_char == Support::ADDITION || this_char == Support::SUBTRACTION)
+	    && (op_char == Support::MULTIPLICATION || op_char == Support::DIVISION))
+	{
+	    return false;
+	}
+
+	return true;
+}
+

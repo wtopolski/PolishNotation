@@ -28,12 +28,20 @@ public:
 	static const char BRACKET_STOP = ')';
 	static const char SPACE = ' ';
 	
-	static double count(string& sentence);
-	static string convertToNotation(string& input);
-	static void split(vector<Token*>& tokens, string& input);
+	// Prefix
+	static string convert_to_prefix_notation(string& input);
+	static double count_prefix(string& sentence);
+	static void convert_to_prefix(vector<Token*>& postfix_tokens, vector<Token*>& infix_tokens);
+
+	// Postfix
+	static string convert_to_postfix_notation(string& input);
+	static double count_postfix(string& sentence);
+	static void convert_to_postfix(vector<Token*>& postfix_tokens, vector<Token*>& infix_tokens);
+
+	// Common
 	static void process_operand(vector<Token*>& output, Operand* op, int place);
-	static int process_operator(vector<Token*>& output, Operator* op);
-	static void convert_to_postfix_notation(vector<Token*>& postfix_tokens, vector<Token*>& infix_tokens);
+	static int process_operator(vector<Token*>& output, Operator* op, bool is_postfix);
+	static void split(vector<Token*>& tokens, string& input);
 	static void swap(vector<Token*>& tokens, int pos_el_1, int pos_el_2);
 	static void add_token(vector<Token*>& tokens, string& value);
 	static Token_Type get_token_type(string& value);

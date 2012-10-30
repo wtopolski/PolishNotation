@@ -15,7 +15,7 @@
 
 using namespace std;
 
-double Support::count(string& sentence)
+double Support::count_postfix(string& sentence)
 {
     vector<string> tokens;
     stack<double> heap;
@@ -30,6 +30,10 @@ double Support::count(string& sentence)
 
         if (token.compare("+") == 0)
         {
+            if (heap.size() < 2)
+        	{
+        		break;
+        	}
             double a = heap.top();
             heap.pop();
             double b = heap.top();
@@ -38,6 +42,10 @@ double Support::count(string& sentence)
         }
         else if (token.compare("-") == 0)
         {
+            if (heap.size() < 2)
+            {
+                break;
+            }
             double a = heap.top();
             heap.pop();
             double b = heap.top();
@@ -46,6 +54,10 @@ double Support::count(string& sentence)
         }
         else if (token.compare("*") == 0)
         {
+            if (heap.size() < 2)
+            {
+                break;
+            }
             double a = heap.top();
             heap.pop();
             double b = heap.top();
@@ -54,6 +66,10 @@ double Support::count(string& sentence)
         }
         else if (token.compare("/") == 0)
         {
+            if (heap.size() < 2)
+            {
+                break;
+            }
             double a = heap.top();
             heap.pop();
             double b = heap.top();
@@ -67,59 +83,37 @@ double Support::count(string& sentence)
         }
     }
 
-	double res = heap.top();
-	heap.pop();
-
-	return res;
+    double res = 0;
+    if (heap.size() > 0) {
+        res = heap.top();
+        heap.pop();
+    }
+    return res;
 }
 
-string Support::convertToNotation(string& input)
+string Support::convert_to_postfix_notation(string& input)
 {
     vector<Token*> infix_tokens;
     Support::split(infix_tokens, input);
 
     vector<Token*> postfix_tokens;
-    Support::convert_to_postfix_notation(postfix_tokens, infix_tokens);
+    Support::convert_to_postfix(postfix_tokens, infix_tokens);
 
     string output;
     vector<Token*>::iterator it;
     for (it=postfix_tokens.begin(); it!=postfix_tokens.end(); ++it)
     {
-                Token* token = *it;
-                output.append(token->get_value());
-                output.append(" ");
-                delete token;
-        }
+        Token* token = *it;
+        output.append(token->get_value());
+        output.append(" ");
+        delete token;
+    }
 
     return output;
 }
 
-// Swap two elements in vector [x][y][z] >> [x][z][y]
-void Support::swap(vector<Token*>& tokens, int pos_el_1, int pos_el_2)
-{
-	if (pos_el_1 == pos_el_2)
-	{
-		return;
-	}
-	else if (pos_el_1 > pos_el_2)
-	{
-		int pos_temp = pos_el_1;
-		pos_el_1 = pos_el_2;
-		pos_el_2 = pos_temp;
-	}
-	
-	Token* el1 = tokens[pos_el_1];	
-	Token* el2 = tokens.at(pos_el_2);
-	
-	tokens.erase(tokens.begin() + pos_el_2);
-	tokens.erase(tokens.begin() + pos_el_1);
-
-	tokens.insert(tokens.begin() + pos_el_1, el2);
-	tokens.insert(tokens.begin() + pos_el_2, el1);
-}
-
 // Add operator to postfix vector ex. [12+] << [*] -> [12*+]
-int Support::process_operator(vector<Token*>& output, Operator* new_operator)
+int Support::process_operator(vector<Token*>& output, Operator* new_operator, bool is_postfix)
 {
 	output.push_back(new_operator);
 
@@ -136,7 +130,17 @@ int Support::process_operator(vector<Token*>& output, Operator* new_operator)
         Operator* op_right = (Operator*) output[index_of_right];
         Operator* op_left = (Operator*) output[index_of_left];
 
-        if (op_right->is_greater_then(*op_left))
+	    bool result = false;
+	    if (is_postfix)
+	    {
+		    result = op_right->is_greater_then(*op_left);
+	    }
+        else
+        {
+            result = op_right->is_greater_or_equal_then(*op_left);
+        }
+
+        if (result)
         {
             Support::swap(output, index_of_left, index_of_right);
             index_of_right--;
@@ -175,7 +179,7 @@ void Support::process_operand(vector<Token*>& output, Operand* op, int place)
 }
 
 // Convert simple infix notation ex. 1+2*3 to postfix notation 123*+ (without brackets)
-void Support::convert_to_postfix_notation(vector<Token*>& postfix_tokens, vector<Token*>& infix_tokens)
+void Support::convert_to_postfix(vector<Token*>& postfix_tokens, vector<Token*>& infix_tokens)
 {
     vector<Token*>::iterator it;
     int last_place_of_operator = 0;
@@ -188,10 +192,150 @@ void Support::convert_to_postfix_notation(vector<Token*>& postfix_tokens, vector
 			process_operand(postfix_tokens, (Operand*)token, last_place_of_operator);
 		break;
 		case Operator_Type:
-			last_place_of_operator = process_operator(postfix_tokens, (Operator*)token);
+			last_place_of_operator = process_operator(postfix_tokens, (Operator*)token, true);
 		break;
 		}
 	}
+}
+
+double Support::count_prefix(string& sentence)
+{
+    vector<string> tokens;
+    stack<double> heap;
+
+    istringstream iss(sentence);
+    copy(istream_iterator<string>(iss), istream_iterator<string>(), back_inserter<vector<string> >(tokens));
+
+    vector<string>::reverse_iterator it;
+    for( it=tokens.rbegin(); it!=tokens.rend(); ++it )
+    {
+        string token = *it;
+
+        if (token.compare("+") == 0)
+        {
+            if (heap.size() < 2)
+        	{
+        		break;
+        	}
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(a + b);
+        }
+        else if (token.compare("-") == 0)
+        {
+            if (heap.size() < 2)
+        	{
+        		break;
+        	}
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(a - b);
+        }
+        else if (token.compare("*") == 0)
+        {
+            if (heap.size() < 2)
+        	{
+        		break;
+        	}
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(a * b);
+        }
+        else if (token.compare("/") == 0)
+        {
+            if (heap.size() < 2)
+        	{
+        		break;
+        	}
+            double a = heap.top();
+            heap.pop();
+            double b = heap.top();
+            heap.pop();
+            heap.push(a / b);
+        }
+        else
+        {
+            double value = atof(token.c_str());
+        	heap.push(value);
+        }
+    }
+
+    double res = 0;
+    if (heap.size() > 0) {
+        res = heap.top();
+        heap.pop();
+    }
+    return res;
+}
+
+string Support::convert_to_prefix_notation(string& input)
+{
+    vector<Token*> infix_tokens;
+    Support::split(infix_tokens, input);
+
+    vector<Token*> prefix_tokens;
+    Support::convert_to_prefix(prefix_tokens, infix_tokens);
+
+    string output;
+    vector<Token*>::reverse_iterator it;
+    for (it=prefix_tokens.rbegin(); it!=prefix_tokens.rend(); ++it)
+    {
+        Token* token = *it;
+        output.append(token->get_value());
+        output.append(" ");
+        delete token;
+    }
+
+    return output;
+}
+
+void Support::convert_to_prefix(vector<Token*>& prefix_tokens, vector<Token*>& infix_tokens)
+{
+    vector<Token*>::reverse_iterator it;
+    int last_place_of_operator = 0;
+    for (it=infix_tokens.rbegin(); it!=infix_tokens.rend(); ++it)
+    {
+		Token* token = *it;
+		switch (token->get_type())
+		{
+		case Operand_Type:
+			process_operand(prefix_tokens, (Operand*)token, last_place_of_operator);
+		break;
+		case Operator_Type:
+			last_place_of_operator = process_operator(prefix_tokens, (Operator*)token, false);
+		break;
+		}
+	}
+}
+
+// Swap two elements in vector [x][y][z] >> [x][z][y]
+void Support::swap(vector<Token*>& tokens, int pos_el_1, int pos_el_2)
+{
+	if (pos_el_1 == pos_el_2)
+	{
+		return;
+	}
+	else if (pos_el_1 > pos_el_2)
+	{
+		int pos_temp = pos_el_1;
+		pos_el_1 = pos_el_2;
+		pos_el_2 = pos_temp;
+	}
+	
+	Token* el1 = tokens[pos_el_1];	
+	Token* el2 = tokens.at(pos_el_2);
+	
+	tokens.erase(tokens.begin() + pos_el_2);
+	tokens.erase(tokens.begin() + pos_el_1);
+
+	tokens.insert(tokens.begin() + pos_el_1, el2);
+	tokens.insert(tokens.begin() + pos_el_2, el1);
 }
 
 // Split input string to tokens ex. 1+2 >> [1][+][2]

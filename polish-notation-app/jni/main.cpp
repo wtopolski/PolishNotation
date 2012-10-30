@@ -15,10 +15,37 @@
 
 using namespace std;
 
+void test(const char* input_chars)
+{
+	string input = input_chars;
+	string output = "";
+	cout << endl << "Test: " << input << endl;
+
+	output = Support::convert_to_postfix_notation(input);
+	double res1 = Support::count_postfix(output);
+	cout << "Postfix: [" << output << "] = " << res1 << endl;
+
+	output = Support::convert_to_prefix_notation(input);
+	double res2 = Support::count_prefix(output);
+	cout << "Prefix: [" << output << "] = " << res2 << endl;
+
+	if (res1 != res2)
+	{
+		cout << "!!!!!!!!!!!!!!!KABUM!!!!!!!!!!!!!!!!" << endl;
+	}
+}
+
 int main( int argc, const char* argv[] )
 {
-	string input = "a*b+c/d";
-	string output = Support::convertToNotation(input);
-	cout << input << endl << output << endl;
+	test("11-22");
+	test("11+22");
+	test("11*22");
+	test("11/22");
+	test("11*22+33");
+	test("11+22*33");
+	test("11/22/33");
+	test("11-22-33");
+	test("11-22*33+44");
+	test("11/22-33*44");
 	return 0;
 }
