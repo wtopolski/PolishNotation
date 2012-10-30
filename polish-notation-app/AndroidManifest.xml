@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="pl.wtopolski.android.polishnotation"
-          android:versionCode="3"
-          android:versionName="0.0.3">
+          android:versionCode="${parsedVersion.majorVersion}${parsedVersion.minorVersion}${parsedVersion.incrementalVersion}"
+          android:versionName="${project.version}">
     <uses-sdk android:minSdkVersion="8"/>
     <application android:label="@string/app_name">
         <activity android:name="MainActivity"
@@ -18,7 +18,7 @@
         <configuration>
             <appender
                     name="LOGCAT"
-                    class="ch.qos.logback.classic.android.LogcatAppender" >
+                    class="ch.qos.logback.classic.android.LogcatAppender">
                 <tagEncoder>
                     <pattern>PolishNotation</pattern>
                 </tagEncoder>
@@ -27,8 +27,8 @@
                 </encoder>
             </appender>
 
-            <root level="TRACE" >
-                <appender-ref ref="LOGCAT" />
+            <root level="TRACE">
+                <appender-ref ref="LOGCAT"/>
             </root>
         </configuration>
     </logback>
