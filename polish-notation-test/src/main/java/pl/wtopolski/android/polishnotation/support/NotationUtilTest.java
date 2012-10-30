@@ -20,15 +20,16 @@ public class NotationUtilTest extends AndroidTestCase {
         super.tearDown();
     }
 
-    public void testSimpleConvert(){
+    public void testSimplePostfixConvert(){
         // given
         String argument = "1+1";
-        String expected = "1 1 + ";
+        String expected = "1 1 +";
         String result = "";
 
         // then
         try {
             result = NotationUtil.convertInfixToPostfix(argument);
+            result = result.trim();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,15 +38,50 @@ public class NotationUtilTest extends AndroidTestCase {
         assertEquals(result, expected);
     }
 
-    public void testSimpleCount(){
+    public void testSimplePostfixCount(){
         // given
-        String argument = "1 1 + ";
+        String argument = "1 1 +";
         double expected = 2f;
         double result = -1f;
 
         // then
         try {
             result = NotationUtil.countFromPostfixNotation(argument);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // then
+        assertEquals(result, expected);
+    }
+
+    public void testSimplePrefixConvert(){
+        // given
+        String argument = "1+1";
+        String expected = "+ 1 1";
+        String result = "";
+
+        // then
+        try {
+            result = NotationUtil.convertInfixToPrefix(argument);
+            result = result.trim();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // then
+        assertEquals(result, expected);
+    }
+
+    public void testSimplePrefixCount(){
+        // given
+        String argument = "+ 1 1";
+        double expected = 2f;
+        double result = -1f;
+
+        // then
+        try {
+            result = NotationUtil.countFromPrefixNotation(argument);
         } catch (Exception e) {
             e.printStackTrace();
         }

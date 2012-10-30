@@ -11,12 +11,26 @@ public class JniHelper {
      * @param value infix ex. 1+2*3-4
      * @return postfix ex. 1 2 3 * + 4 -
      */
-    public static native String convertToNotation(String value);
+    public static native String convertToPostfixNotation(String value);
 
     /**
      * Count value from postfix sentence.
      * @param value postfix ex. 1 2 3 * + 4 -
      * @return operation result
      */
-    public static native double countValueFromNotation(String value);
+    public static native double countValueFromPostfixNotation(String value);
+
+    /**
+     * Convert simple infix sentence (without brackets) for prefix sentence.
+     * @param value infix ex. 1+2
+     * @return prefix ex. + 1 2
+     */
+    public static native String convertToPrefixNotation(String value);
+
+    /**
+     * Count value from prefix sentence.
+     * @param value prefix ex. + 1 2
+     * @return operation result
+     */
+    public static native double countValueFromPrefixNotation(String value);
 }

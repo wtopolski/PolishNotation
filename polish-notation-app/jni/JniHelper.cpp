@@ -21,27 +21,55 @@
 
 using namespace std;
 
-JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_convertToNotation(JNIEnv *env, jclass cls, jstring inputJValue)
+JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_convertToPostfixNotation
+(JNIEnv *env, jclass cls, jstring inputJValue)
 {
     jboolean isCopy;
     const char* originCharValue = env->GetStringUTFChars(inputJValue, &isCopy);
     string input(originCharValue);
     env->ReleaseStringUTFChars(inputJValue, originCharValue);
-    LOGD("Convert To Notation [input: %s]", input.c_str());
+    LOGD("Convert To Postfix Notation [input: %s]", input.c_str());
     string output = Support::convert_to_postfix_notation(input);
-    LOGD("Convert To Notation [output: %s]", output.c_str());
+    LOGD("Convert To Postfix Notation [output: %s]", output.c_str());
     return env->NewStringUTF(output.c_str());
 }
 
-JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_countValueFromNotation(JNIEnv *env, jclass cls, jstring inputJValue)
+JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_countValueFromPostfixNotation
+(JNIEnv *env, jclass cls, jstring inputJValue)
 {
     jboolean isCopy;
     const char* originCharValue = env->GetStringUTFChars(inputJValue, &isCopy);
     string input(originCharValue);
     env->ReleaseStringUTFChars(inputJValue, originCharValue);
-    LOGD("Count Value [input: %s]", input.c_str());
+    LOGD("Count Value Postfix [input: %s]", input.c_str());
 	double output = Support::count_postfix(input);
-	LOGD("Count Value [output %f]", output);
+	LOGD("Count Value Postfix [output %f]", output);
+    return output;
+}
+
+JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_convertToPrefixNotation
+(JNIEnv *env, jclass cls, jstring inputJValue)
+{
+    jboolean isCopy;
+    const char* originCharValue = env->GetStringUTFChars(inputJValue, &isCopy);
+    string input(originCharValue);
+    env->ReleaseStringUTFChars(inputJValue, originCharValue);
+    LOGD("Convert To Prefix Notation [input: %s]", input.c_str());
+    string output = Support::convert_to_prefix_notation(input);
+    LOGD("Convert To Prefix Notation [output: %s]", output.c_str());
+    return env->NewStringUTF(output.c_str());
+}
+
+JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_countValueFromPrefixNotation
+(JNIEnv *env, jclass cls, jstring inputJValue)
+{
+    jboolean isCopy;
+    const char* originCharValue = env->GetStringUTFChars(inputJValue, &isCopy);
+    string input(originCharValue);
+    env->ReleaseStringUTFChars(inputJValue, originCharValue);
+    LOGD("Count Value Prefix [input: %s]", input.c_str());
+	double output = Support::count_prefix(input);
+	LOGD("Count Value Prefix [output %f]", output);
     return output;
 }
 

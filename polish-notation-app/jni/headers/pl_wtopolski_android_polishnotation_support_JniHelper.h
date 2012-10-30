@@ -9,18 +9,34 @@ extern "C" {
 #endif
 /*
  * Class:     pl_wtopolski_android_polishnotation_support_JniHelper
- * Method:    convertToNotation
+ * Method:    convertToPostfixNotation
  * Signature: (Ljava/lang/String;)Ljava/lang/String;
  */
-JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_convertToNotation
+JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_convertToPostfixNotation
   (JNIEnv *, jclass, jstring);
 
 /*
  * Class:     pl_wtopolski_android_polishnotation_support_JniHelper
- * Method:    countValueFromNotation
+ * Method:    countValueFromPostfixNotation
  * Signature: (Ljava/lang/String;)D
  */
-JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_countValueFromNotation
+JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_countValueFromPostfixNotation
+  (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     pl_wtopolski_android_polishnotation_support_JniHelper
+ * Method:    convertToPrefixNotation
+ * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ */
+JNIEXPORT jstring JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_convertToPrefixNotation
+  (JNIEnv *, jclass, jstring);
+
+/*
+ * Class:     pl_wtopolski_android_polishnotation_support_JniHelper
+ * Method:    countValueFromPrefixNotation
+ * Signature: (Ljava/lang/String;)D
+ */
+JNIEXPORT jdouble JNICALL Java_pl_wtopolski_android_polishnotation_support_JniHelper_countValueFromPrefixNotation
   (JNIEnv *, jclass, jstring);
 
 #ifdef __cplusplus

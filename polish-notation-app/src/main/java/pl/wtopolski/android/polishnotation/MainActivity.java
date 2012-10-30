@@ -36,19 +36,29 @@ public class MainActivity extends Activity {
 
     public void action(View view) {
         String request = edit.getText().toString();
-        String response = null;
+        String responsePostfix = null;
+        String responsePrefix = null;
         LOG.debug("Infix: {}", request);
 
         try {
-            response = NotationUtil.convertInfixToPostfix(request);
+            responsePostfix = NotationUtil.convertInfixToPostfix(request);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        LOG.debug("Postfix request: {}", response);
-        double result = NotationUtil.countFromPostfixNotation(response);
-        LOG.debug("Count result: {}", result);
+        try {
+            responsePrefix = NotationUtil.convertInfixToPrefix(request);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        test.setText("request:\n" + request + "\nresponse:\n" + response + "\nresult:\n" + result);
+        LOG.debug("Postfix request: {}", responsePostfix);
+        LOG.debug("Prefix request: {}", responsePrefix);
+        double resultPostfix = NotationUtil.countFromPostfixNotation(responsePostfix);
+        double resultPrefix = NotationUtil.countFromPrefixNotation(responsePrefix);
+        LOG.debug("Count result: {}", resultPostfix);
+        LOG.debug("Count result: {}", resultPrefix);
+
+        test.setText("request:\n" + request + "\npostfix:\n" + responsePostfix + "\nprefix:\n" + responsePrefix + "\nresultPostfix:\n" + resultPostfix + "\nresultPrefix:\n" + resultPrefix);
     }
 }
