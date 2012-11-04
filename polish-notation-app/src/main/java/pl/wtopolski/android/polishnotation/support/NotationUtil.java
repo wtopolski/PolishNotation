@@ -15,6 +15,7 @@ public class NotationUtil {
 
     /**
      * Count value from prefix sentence.
+     *
      * @param postfix
      * @return
      */
@@ -24,6 +25,7 @@ public class NotationUtil {
 
     /**
      * Convert infix sentence to prefix sentence.
+     *
      * @param infix sentence
      * @return prefix sentence
      * @throws Exception
@@ -36,11 +38,14 @@ public class NotationUtil {
             conversionMap.put(key, value);
         }
 
-        return stickFragments(conversionMap);
+        String result = stickFragments(conversionMap);
+        result = result.replaceAll("\\s+", " ").trim();
+        return result;
     }
 
     /**
      * Count value from postfix sentence.
+     *
      * @param postfix
      * @return
      */
@@ -50,6 +55,7 @@ public class NotationUtil {
 
     /**
      * Convert infix sentence to postfix sentence.
+     *
      * @param infix sentence
      * @return postfix sentence
      * @throws Exception
@@ -62,11 +68,14 @@ public class NotationUtil {
             conversionMap.put(key, value);
         }
 
-        return stickFragments(conversionMap);
+        String result = stickFragments(conversionMap);
+        result = result.replaceAll("\\s+", " ").trim();
+        return result;
     }
 
     /**
      * Split sentence into map, use brackets as a divider.
+     *
      * @param input
      * @return
      * @throws Exception
@@ -145,6 +154,7 @@ public class NotationUtil {
 
     /**
      * Stick map into one sentence.
+     *
      * @param postfixMap
      * @return
      */
