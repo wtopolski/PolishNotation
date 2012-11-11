@@ -1,8 +1,10 @@
 package pl.wtopolski.android.polishnotation.support;
 
+import android.text.TextUtils;
 import android.util.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pl.wtopolski.android.polishnotation.support.exception.BracketException;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -12,15 +14,22 @@ import java.util.Map;
 public class NotationUtil {
     private static final String TOKEN_PREFIX = "T";
     private static final String TOKEN_MAIN = TOKEN_PREFIX + "0";
+    private static final String EMPTY_VALUE = "";
+    private static final double EMPTY_DOUBLE_VALUE = 0f;
 
     /**
-     * Count value from prefix sentence.
+     * Count value from prefix sentence. If sentence is empty then
+     * value 0 is returned.
      *
-     * @param postfix
-     * @return
+     * @param prefix
+     * @return result
      */
-    public static double countFromPrefixNotation(String postfix) {
-        return JniHelper.countValueFromPrefixNotation(postfix);
+    public static double countFromPrefixNotation(String prefix) {
+        if (TextUtils.isEmpty(prefix)) {
+            return EMPTY_DOUBLE_VALUE;
+        }
+
+        return JniHelper.countValueFromPrefixNotation(prefix);
     }
 
     /**
@@ -30,7 +39,11 @@ public class NotationUtil {
      * @return prefix sentence
      * @throws Exception
      */
-    public static String convertInfixToPrefix(String infix) throws Exception {
+    public static String convertInfixToPrefix(String infix) throws BracketException {
+        if (TextUtils.isEmpty(infix)) {
+            return EMPTY_VALUE;
+        }
+
         Map<String, String> conversionMap = splitBrackets(infix);
 
         for (String key : conversionMap.keySet()) {
@@ -44,12 +57,17 @@ public class NotationUtil {
     }
 
     /**
-     * Count value from postfix sentence.
+     * Count value from postfix sentence. If sentence is empty then
+     * value 0 is returned.
      *
      * @param postfix
-     * @return
+     * @return result
      */
     public static double countFromPostfixNotation(String postfix) {
+        if (TextUtils.isEmpty(postfix)) {
+            return EMPTY_DOUBLE_VALUE;
+        }
+
         return JniHelper.countValueFromPostfixNotation(postfix);
     }
 
@@ -60,7 +78,11 @@ public class NotationUtil {
      * @return postfix sentence
      * @throws Exception
      */
-    public static String convertInfixToPostfix(String infix) throws Exception {
+    public static String convertInfixToPostfix(String infix) throws BracketException {
+        if (TextUtils.isEmpty(infix)) {
+            return EMPTY_VALUE;
+        }
+
         Map<String, String> conversionMap = splitBrackets(infix);
 
         for (String key : conversionMap.keySet()) {
@@ -80,7 +102,7 @@ public class NotationUtil {
      * @return
      * @throws Exception
      */
-    private static Map<String, String> splitBrackets(String input) throws Exception {
+    private static Map<String, String> splitBrackets(String input) throws BracketException {
         List<Integer> startBrackets = new LinkedList<Integer>();
         List<Integer> endBrackets = new LinkedList<Integer>();
         Map<String, String> resultMap = new LinkedHashMap<String, String>();
@@ -103,7 +125,7 @@ public class NotationUtil {
 
         // Match lists.
         if (startBrackets.size() != endBrackets.size()) {
-            throw new Exception("Wrong number of brackets!");
+            throw new BracketException();
         }
 
         List<String> resultList = new LinkedList<String>();
