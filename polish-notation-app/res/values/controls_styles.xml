@@ -27,10 +27,19 @@
   </style>
 
   <style name="ButtonControls" parent="android:Widget.Button">
-	  <item name="android:background">@drawable/btn_default_holo_dark</item>
-	  <item name="android:minHeight">48dip</item>
-	  <item name="android:minWidth">64dip</item>
-	  <item name="android:textColor">@color/blue_dark</item>
+      <item name="android:background">@drawable/btn_default_holo_dark</item>
+      <item name="android:minHeight">48dip</item>
+      <item name="android:minWidth">64dip</item>
+      <item name="android:textColor">@color/blue_dark</item>
+  </style>
+
+  <style name="CalcButtonControls" parent="ButtonControls">
+	  <item name="android:textColor">@color/red_dark</item>
+      <item name="android:textStyle">bold</item>
+      <item name="android:textSize">24dip</item>
+      <item name="android:minWidth">76dip</item>
+      <item name="android:layout_marginTop">3dip</item>
+      <item name="android:layout_marginLeft">3dip</item>
   </style>
 
   <style name="ImageButtonControls" parent="android:Widget.ImageButton">
