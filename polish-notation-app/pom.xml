@@ -137,6 +137,9 @@
                             <goal>ndk-build</goal>
                         </goals>
                         <configuration>
+                            <sdk>
+                                <platform>14</platform>
+                            </sdk>
                             <attachNativeArtifacts>true</attachNativeArtifacts>
                         </configuration>
                     </execution>
