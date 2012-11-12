@@ -13,21 +13,23 @@ import org.slf4j.LoggerFactory;
 import pl.wtopolski.android.polishnotation.support.JniHelper;
 import pl.wtopolski.android.polishnotation.support.NotationUtil;
 import pl.wtopolski.android.polishnotation.support.exception.BracketException;
+import pl.wtopolski.android.polishnotation.support.model.CountResult;
+import pl.wtopolski.android.polishnotation.support.task.CountListener;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements CountListener {
     private static final Logger LOG = LoggerFactory.getLogger(NotationUtil.class);
+
+    private NotationApplication app;
 
     private EditText edit;
     private TextView test;
-
-    static {
-        System.loadLibrary("polish-notation-app");
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        app = (NotationApplication) getApplication();
 
         edit = (EditText) findViewById(R.id.edit);
         edit.setText("(1*0.5)/(3+11-(9*1))/8-4+3*(10-5)");
@@ -45,6 +47,18 @@ public class MainActivity extends Activity {
         });
 
         test = (TextView) findViewById(R.id.test);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        app.setListener(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        app.setListener(null);
     }
 
     public void calcButton(View view) {
@@ -133,36 +147,24 @@ public class MainActivity extends Activity {
                 }
                 break;
         }
-
     }
 
     private void count() {
         String request = edit.getText().toString();
-        String responsePostfix = null;
-        String responsePrefix = null;
-        double resultPostfix = 0f;
-        double resultPrefix = 0f;
+        app.makeRequest(request);
+    }
 
-        LOG.debug("Infix: {}", request);
-
-        try {
-            responsePostfix = NotationUtil.convertInfixToPostfix(request);
-            LOG.debug("Postfix request: {}", responsePostfix);
-            resultPostfix = NotationUtil.countFromPostfixNotation(responsePostfix);
-            LOG.debug("Count result: {}", resultPostfix);
-        } catch (BracketException e) {
-            e.printStackTrace();
+    @Override
+    public void onResolve(CountResult result) {
+        if (result == null) {
+            test.setVisibility(View.GONE);
+        } else {
+            test.setVisibility(View.VISIBLE);
+            String request = result.getRequest();
+            String postfix = result.getPostfix();
+            String prefix = result.getPrefix();
+            double resultValue = result.getResult();
+            test.setText("request:\n" + request + "\npostfix:\n" + postfix + "\nprefix:\n" + prefix + "\nresult:\n" + resultValue);
         }
-
-        try {
-            responsePrefix = NotationUtil.convertInfixToPrefix(request);
-            LOG.debug("Prefix request: {}", responsePrefix);
-            resultPrefix = NotationUtil.countFromPrefixNotation(responsePrefix);
-            LOG.debug("Count result: {}", resultPrefix);
-        } catch (BracketException e) {
-            e.printStackTrace();
-        }
-
-        test.setText("request:\n" + request + "\npostfix:\n" + responsePostfix + "\nprefix:\n" + responsePrefix + "\nresultPostfix:\n" + resultPostfix + "\nresultPrefix:\n" + resultPrefix);
     }
 }
