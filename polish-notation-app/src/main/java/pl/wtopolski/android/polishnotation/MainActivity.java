@@ -22,7 +22,9 @@ public class MainActivity extends Activity implements CountListener {
     private NotationApplication app;
 
     private EditText edit;
-    private TextView test;
+    private TextView requestText;
+    private TextView prefixText;
+    private TextView postfixText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,7 @@ public class MainActivity extends Activity implements CountListener {
         app = (NotationApplication) getApplication();
 
         edit = (EditText) findViewById(R.id.edit);
-        edit.setText("(1*0.5)/(3+11-(9*1))/8-4+3*(10-5)");
+        edit.setText("");
 
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(edit.getWindowToken(), 0);
@@ -41,12 +43,14 @@ public class MainActivity extends Activity implements CountListener {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(edit.getWindowToken(), 0);
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(edit.getWindowToken(), 0);
             }
         });
 
-        test = (TextView) findViewById(R.id.test);
+        requestText = (TextView) findViewById(R.id.request);
+        prefixText = (TextView) findViewById(R.id.prefix);
+        postfixText = (TextView) findViewById(R.id.postfix);
     }
 
     @Override
@@ -157,14 +161,18 @@ public class MainActivity extends Activity implements CountListener {
     @Override
     public void onResolve(CountResult result) {
         if (result == null) {
-            test.setVisibility(View.GONE);
+            requestText.setText("");
+            prefixText.setText("");
+            postfixText.setText("");
         } else {
-            test.setVisibility(View.VISIBLE);
             String request = result.getRequest();
             String postfix = result.getPostfix();
             String prefix = result.getPrefix();
             double resultValue = result.getResult();
-            test.setText("request:\n" + request + "\npostfix:\n" + postfix + "\nprefix:\n" + prefix + "\nresult:\n" + resultValue);
+
+            requestText.setText(request + " = " + String.format("%.3f", resultValue));
+            prefixText.setText(prefix);
+            postfixText.setText(postfix);
         }
     }
 }

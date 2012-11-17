@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Blue -->
     <color name="blue_dark">#115a71</color>
     <color name="blue_light">#247890</color>
     <color name="blue_very_light">#ebf7fa</color>
+
+    <!-- White -->
     <color name="paper_white">#ebe9dc</color>
+    <color name="paper_white_transparent">#bbebe9dc</color>
+
+    <!-- Red -->
     <color name="red_dark">#c83019</color>
     <color name="red_light">#e15648</color>
+
+    <!-- Gray -->
+    <color name="gray_dark">#666666</color>
+    <color name="gray_light">#aaaaaa</color>
 </resources>

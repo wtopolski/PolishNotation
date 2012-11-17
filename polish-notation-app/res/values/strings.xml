@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Polish Notation</string>
+    <string name="clear_text">C</string>
+    <string name="start_bracket_text">(</string>
+    <string name="end_bracket_text">)</string>
+    <string name="dot_text">.</string>
+    <string name="back_text">bck</string>
+
+    <string name="minus_text">-</string>
+    <string name="plus_text">+</string>
+    <string name="division_text">÷</string>
+    <string name="multiplication_text">*</string>
+    <string name="resolve_text">=</string>
+
+    <string name="number_0_text">0</string>
+    <string name="number_1_text">1</string>
+    <string name="number_2_text">2</string>
+    <string name="number_3_text">3</string>
+    <string name="number_4_text">4</string>
+    <string name="number_5_text">5</string>
+    <string name="number_6_text">6</string>
+    <string name="number_7_text">7</string>
+    <string name="number_8_text">8</string>
+    <string name="number_9_text">9</string>
 </resources>
