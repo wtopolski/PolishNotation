@@ -117,10 +117,6 @@ public class MainActivity extends Activity implements CountListener {
                 edit.getText().insert(position, ".");
                 count();
                 break;
-            case R.id.calcButtonEndBracket:
-                edit.getText().insert(position, ")");
-                count();
-                break;
             case R.id.calcButtonMinus:
                 edit.getText().insert(position, "-");
                 count();
@@ -133,11 +129,20 @@ public class MainActivity extends Activity implements CountListener {
                 edit.getText().insert(position, "+");
                 count();
                 break;
-            case R.id.calcButtonStartBracket:
-                edit.getText().insert(position, "(");
-                count();
-                break;
-            case R.id.calcButtonResolve:
+            case R.id.calcButtonBracket:
+                String content = edit.getText().toString();
+                int length = content.length();
+
+                if (length > 0) {
+                    char lastChar = edit.getText().toString().charAt(length - 1);
+                    if (lastChar == '-' || lastChar == '+' || lastChar == '*' || lastChar == '/') {
+                        edit.getText().insert(position, "(");
+                    } else {
+                        edit.getText().insert(position, ")");
+                    }
+                } else {
+                    edit.getText().insert(position, "(");
+                }
                 count();
                 break;
             case R.id.calcButtonClear:

@@ -10,8 +10,6 @@
         android:drawable="@drawable/btn_default_focused_calc" />
     <item android:state_enabled="true"
         android:drawable="@drawable/btn_default_normal_calc" />
-    <item android:state_focused="true"
-        android:drawable="@drawable/btn_default_disabled_focused_calc" />
     <item
          android:drawable="@drawable/btn_default_disabled_calc" />
 </selector>
