@@ -4,18 +4,12 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 
-public class BracketKeyBoardButton implements KeyBoardButton {
-    private int buttonId;
+public class BracketKeyBoardButton extends KeyBoardButton {
     private Button button;
 
     public BracketKeyBoardButton(View parent, int buttonId) {
         this.buttonId = buttonId;
         button = (Button) parent.findViewById(buttonId);
-    }
-
-    @Override
-    public int getButtonId() {
-        return buttonId;
     }
 
     @Override
@@ -39,6 +33,6 @@ public class BracketKeyBoardButton implements KeyBoardButton {
 
     @Override
     public void setEnabled(boolean enabled) {
-        button.setEnabled(enabled);
+        super.setEnabled(button, enabled);
     }
 }

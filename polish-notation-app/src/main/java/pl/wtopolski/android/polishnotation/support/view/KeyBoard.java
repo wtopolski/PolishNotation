@@ -5,13 +5,12 @@ import android.text.Editable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.Toast;
 import pl.wtopolski.android.polishnotation.R;
 import pl.wtopolski.android.polishnotation.support.model.keyboard.*;
-import pl.wtopolski.android.polishnotation.support.model.rules.BackKeyBoardVisibleRule;
-import pl.wtopolski.android.polishnotation.support.model.rules.CleanKeyBoardVisibleRule;
-import pl.wtopolski.android.polishnotation.support.model.rules.DotKeyBoardVisibleRule;
-import pl.wtopolski.android.polishnotation.support.model.rules.OperationKeyBoardVisibleRule;
+import pl.wtopolski.android.polishnotation.support.model.rules.*;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -74,6 +73,20 @@ public class KeyBoard extends GridLayout {
         groups.add(group);
         buttons.addAll(group.getButtons());
 
+        // '<-'
+        group = new KeyBoardGroup();
+        group.addButton(new PrevKeyBoardButton(view, R.id.calcButtonPrev));
+        group.addRule(new PrevKeyBoardVisibleRule());
+        groups.add(group);
+        buttons.addAll(group.getButtons());
+
+        // '->'
+        group = new KeyBoardGroup();
+        group.addButton(new NextKeyBoardButton(view, R.id.calcButtonNext));
+        group.addRule(new NextKeyBoardVisibleRule());
+        groups.add(group);
+        buttons.addAll(group.getButtons());
+
         // '+' '/' '*'
         group = new KeyBoardGroup();
         group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonDivision, "/"));
@@ -111,10 +124,14 @@ public class KeyBoard extends GridLayout {
         }
     }
 
-    public void onClick(int buttonId, int position, Editable editable) {
+    public void onClick(int buttonId, EditText edit) {
+        int position = edit.getSelectionStart();
+        Editable editable = edit.getText();
+
         for (KeyBoardButton button : buttons) {
             if (button.getButtonId() == buttonId) {
                 position = button.execute(editable, position);
+                edit.setSelection(position);
                 onEditSelection(position, editable.toString());
                 break;
             }

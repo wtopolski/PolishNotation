@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Polish Notation</string>
+    <string name="edit_hint">(1+2)*(3/4)-5</string>
+
     <string name="clear_text">clean</string>
     <string name="bracket_text">( )</string>
     <string name="dot_text">.</string>

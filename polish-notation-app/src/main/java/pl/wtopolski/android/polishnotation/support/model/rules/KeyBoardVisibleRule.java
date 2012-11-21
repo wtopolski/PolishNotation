@@ -1,4 +1,4 @@
-package pl.wtopolski.android.polishnotation.support.model.keyboard;
+package pl.wtopolski.android.polishnotation.support.model.rules;
 
 public abstract class KeyBoardVisibleRule {
     public abstract boolean pass(int position, String content);

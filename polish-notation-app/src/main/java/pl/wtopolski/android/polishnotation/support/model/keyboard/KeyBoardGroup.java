@@ -1,5 +1,7 @@
 package pl.wtopolski.android.polishnotation.support.model.keyboard;
 
+import pl.wtopolski.android.polishnotation.support.model.rules.KeyBoardVisibleRule;
+
 import java.util.LinkedList;
 import java.util.List;
 

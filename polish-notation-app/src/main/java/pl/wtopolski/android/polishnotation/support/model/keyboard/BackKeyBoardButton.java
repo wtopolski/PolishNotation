@@ -6,18 +6,12 @@ import android.view.ViewPropertyAnimator;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class BackKeyBoardButton implements KeyBoardButton {
-    private int buttonId;
+public class BackKeyBoardButton extends KeyBoardButton {
     private ImageButton button;
 
     public BackKeyBoardButton(View parent, int buttonId) {
         this.buttonId = buttonId;
         button = (ImageButton) parent.findViewById(buttonId);
-    }
-
-    @Override
-    public int getButtonId() {
-        return buttonId;
     }
 
     @Override
@@ -32,6 +26,6 @@ public class BackKeyBoardButton implements KeyBoardButton {
 
     @Override
     public void setEnabled(boolean enabled) {
-        button.setEnabled(enabled);
+        super.setEnabled(button, enabled);
     }
 }

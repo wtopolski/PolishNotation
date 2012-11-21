@@ -6,8 +6,7 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.Button;
 
-public class InsertKeyBoardButton implements KeyBoardButton {
-    private int buttonId;
+public class InsertKeyBoardButton extends KeyBoardButton {
     private String content;
     private Button button;
 
@@ -18,11 +17,6 @@ public class InsertKeyBoardButton implements KeyBoardButton {
     }
 
     @Override
-    public int getButtonId() {
-        return buttonId;
-    }
-
-    @Override
     public int execute(Editable editable, int position) {
         editable.insert(position, content);
         return position + 1;
@@ -30,6 +24,6 @@ public class InsertKeyBoardButton implements KeyBoardButton {
 
     @Override
     public void setEnabled(boolean enabled) {
-        button.setEnabled(enabled);
+        super.setEnabled(button, enabled);
     }
 }

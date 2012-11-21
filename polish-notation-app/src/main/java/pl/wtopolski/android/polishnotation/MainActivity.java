@@ -83,9 +83,7 @@ public class MainActivity extends Activity implements CountListener {
     public void onKeyBoardButtonClick(View view) {
         // Handle button click.
         int buttonId = view.getId();
-        int position = edit.getSelectionStart();
-        Editable editable = edit.getText();
-        keyboard.onClick(buttonId, position, editable);
+        keyboard.onClick(buttonId, edit);
 
         // Send request.
         String request = edit.getText().toString();
@@ -94,33 +92,41 @@ public class MainActivity extends Activity implements CountListener {
 
     @Override
     public void onResolve(CountResult result) {
-        if (result == null) {
-            requestText.setText(edit.getText().toString());
-            requestText.setTextColor(getResources().getColor(R.color.red_dark));
-
-            prefixText.setText("");
-            postfixText.setText("");
+        if (result != null && result.getRequest().length() > 0) {
+            onResolvePositive(result);
         } else {
-            String request = result.getRequest();
-            String postfix = result.getPostfix();
-            String prefix = result.getPrefix();
-            double resultValue = result.getResult();
-
-            String value = trimTrailingZeros(String.format("%f", resultValue).replace(",", "."));
-
-            requestText.setText(request + " = " + value);
-            requestText.setTextColor(getResources().getColor(R.color.blue_dark));
-
-            prefixText.setText(prefix);
-            postfixText.setText(postfix);
+            onResolveNegative();
         }
     }
 
-    private static String trimTrailingZeros(String number) {
-        if(!number.contains(".")) {
+    private void onResolvePositive(CountResult result) {
+        String request = result.getRequest();
+        String postfix = result.getPostfix();
+        String prefix = result.getPrefix();
+        double resultValue = result.getResult();
+
+        String value = convertResult(resultValue);
+
+        requestText.setText(request + " = " + value);
+        requestText.setTextColor(getResources().getColor(R.color.blue_dark));
+
+        prefixText.setText(prefix);
+        postfixText.setText(postfix);
+    }
+
+    private static String convertResult(double resultValue) {
+        String number = String.format("%f", resultValue).replace(",", ".");
+        if (!number.contains(".")) {
             return number;
         }
-
         return number.replaceAll(".?0*$", "");
+    }
+
+    private void onResolveNegative() {
+        requestText.setText(edit.getText().toString());
+        requestText.setTextColor(getResources().getColor(R.color.red_dark));
+
+        prefixText.setText("");
+        postfixText.setText("");
     }
 }

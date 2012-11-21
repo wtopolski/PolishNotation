@@ -19,10 +19,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
-                android:hint="(1+2)*(3/4)-5"
+                android:hint="@string/edit_hint"
                 android:singleLine="true"
-                android:textSize="18dp"
+                android:textSize="24dp"
                 android:scrollbars="vertical"
+                android:saveEnabled="false"
                 android:textColorHint="@color/blue_light"
                 android:textColorHighlight="@color/red_light" />
 

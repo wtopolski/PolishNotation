@@ -1,7 +1,6 @@
 package pl.wtopolski.android.polishnotation.support.model.rules;
 
 import android.text.TextUtils;
-import pl.wtopolski.android.polishnotation.support.model.keyboard.KeyBoardVisibleRule;
 
 public class DotKeyBoardVisibleRule extends KeyBoardVisibleRule {
     @Override

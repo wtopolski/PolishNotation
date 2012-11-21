@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <Button
+    <ImageButton
             android:id="@+id/calcButtonClear"
-            android:layout_columnSpan="2"
-            android:layout_width="152dp"
             android:onClick="onKeyBoardButtonClick"
             style="@style/CalcButtonControls"
-            android:text="@string/clear_text" />
+            android:src="@drawable/ic_action_calc_clean" />
 
     <ImageButton
             android:id="@+id/calcButtonBack"
-            android:layout_columnSpan="2"
-            android:layout_width="152dp"
             android:onClick="onKeyBoardButtonClick"
             style="@style/CalcButtonControls"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_action_calc_back"
-            android:text="@string/back_text" />
+            android:src="@drawable/ic_action_calc_back" />
+
+    <ImageButton
+            android:id="@+id/calcButtonPrev"
+            android:onClick="onKeyBoardButtonClick"
+            style="@style/CalcButtonControls"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_calc_prev" />
+
+    <ImageButton
+            android:id="@+id/calcButtonNext"
+            android:onClick="onKeyBoardButtonClick"
+            style="@style/CalcButtonControls"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_action_calc_next" />
 
     <Button
             android:id="@+id/calcButton1"

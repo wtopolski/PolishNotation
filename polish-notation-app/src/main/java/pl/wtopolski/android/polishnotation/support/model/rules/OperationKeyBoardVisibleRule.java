@@ -1,8 +1,5 @@
 package pl.wtopolski.android.polishnotation.support.model.rules;
 
-import android.util.Log;
-import pl.wtopolski.android.polishnotation.support.model.keyboard.KeyBoardVisibleRule;
-
 public class OperationKeyBoardVisibleRule extends KeyBoardVisibleRule {
     @Override
     public boolean pass(int position, String content) {
