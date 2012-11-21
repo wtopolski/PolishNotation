@@ -45,7 +45,7 @@ public class KeyBoard extends GridLayout {
         groups = new LinkedList<KeyBoardGroup>();
         KeyBoardGroup group = null;
 
-        // Create group.
+        // Create number group.
         group = new KeyBoardGroup();
         group.addButton(new InsertKeyBoardButton(view, R.id.calcButton0, "0"));
         group.addButton(new InsertKeyBoardButton(view, R.id.calcButton1, "1"));
@@ -61,12 +61,14 @@ public class KeyBoard extends GridLayout {
         groups.add(group);
         buttons.addAll(group.getButtons());
 
+        // '-'
         group = new KeyBoardGroup();
         group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonMinus, "-"));
         // TODO rules
         groups.add(group);
         buttons.addAll(group.getButtons());
 
+        // '(' ')'
         group = new KeyBoardGroup();
         group.addButton(new BracketKeyBoardButton(view, R.id.calcButtonBracket));
         // TODO rules

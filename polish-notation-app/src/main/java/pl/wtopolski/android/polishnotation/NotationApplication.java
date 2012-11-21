@@ -1,6 +1,7 @@
 package pl.wtopolski.android.polishnotation;
 
 import android.app.Application;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import org.slf4j.Logger;
@@ -15,6 +16,8 @@ import java.util.concurrent.Executors;
 public class NotationApplication extends Application implements CountListener, Handler.Callback {
     private static final Logger LOG = LoggerFactory.getLogger(CountTask.class);
 
+    private static Context context;
+
     private CountResult result;
     private ExecutorService executor;
     private Handler guiHandler;
@@ -24,9 +27,14 @@ public class NotationApplication extends Application implements CountListener, H
         System.loadLibrary("polish-notation-app");
     }
 
+    public static Context getContext() {
+        return context;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        context = getApplicationContext();
         guiHandler = new Handler(this);
         executor = Executors.newSingleThreadExecutor();
     }

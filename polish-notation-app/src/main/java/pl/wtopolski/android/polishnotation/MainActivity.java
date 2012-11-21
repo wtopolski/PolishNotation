@@ -16,6 +16,7 @@ import pl.wtopolski.android.polishnotation.support.JniHelper;
 import pl.wtopolski.android.polishnotation.support.NotationUtil;
 import pl.wtopolski.android.polishnotation.support.exception.BracketException;
 import pl.wtopolski.android.polishnotation.support.model.CountResult;
+import pl.wtopolski.android.polishnotation.support.storage.Properties;
 import pl.wtopolski.android.polishnotation.support.task.CountListener;
 import pl.wtopolski.android.polishnotation.support.view.KeyBoard;
 
@@ -65,6 +66,15 @@ public class MainActivity extends Activity implements CountListener {
     protected void onStart() {
         super.onStart();
         app.setListener(this);
+
+        String content = Properties.getEditValue();
+        edit.setText(content);
+
+        int position = Properties.getEditValuePosition();
+        edit.setSelection(position);
+
+        app.makeRequest(content);
+
         editSelectionUpdate();
     }
 
@@ -78,6 +88,12 @@ public class MainActivity extends Activity implements CountListener {
     protected void onStop() {
         super.onStop();
         app.setListener(null);
+
+        String content = edit.getText().toString();
+        Properties.setEditValue(content);
+
+        int position = edit.getSelectionStart();
+        Properties.setEditValuePosition(position);
     }
 
     public void onKeyBoardButtonClick(View view) {
