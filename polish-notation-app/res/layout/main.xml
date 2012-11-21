@@ -93,7 +93,8 @@
 
     </ScrollView>
 
-    <GridLayout
+    <pl.wtopolski.android.polishnotation.support.view.KeyBoard
+            android:id="@+id/keyboard"
             android:layout_width="320dp"
             android:layout_height="258dp"
             android:layout_marginTop="2dp"
@@ -104,119 +105,7 @@
             android:useDefaultMargins="false"
             android:alignmentMode="alignMargins"
             android:columnOrderPreserved="true"
-            android:columnCount="4">
+            android:columnCount="4" />
 
-        <Button
-                android:id="@+id/calcButtonClear"
-                android:layout_columnSpan="2"
-                android:layout_width="152dp"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/clear_text" />
-
-        <Button
-                android:id="@+id/calcButtonBack"
-                android:layout_columnSpan="2"
-                android:layout_width="152dp"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/back_text" />
-
-        <Button
-                android:id="@+id/calcButton1"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/number_1_text" />
-
-        <Button
-                android:id="@+id/calcButton2"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/number_2_text" />
-
-        <Button
-                android:id="@+id/calcButton3"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/number_3_text" />
-
-        <Button
-                android:id="@+id/calcButtonPlus"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/plus_text" />
-
-        <Button
-                android:id="@+id/calcButton4"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/number_4_text" />
-
-        <Button
-                android:id="@+id/calcButton5"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/number_5_text" />
-
-        <Button
-                android:id="@+id/calcButton6"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/number_6_text" />
-        <Button
-                android:id="@+id/calcButtonMinus"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/minus_text"/>
-
-        <Button
-                android:id="@+id/calcButton7"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/number_7_text" />
-
-        <Button
-                android:id="@+id/calcButton8"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/number_8_text" />
-
-        <Button
-                android:id="@+id/calcButton9"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/number_9_text" />
-
-        <Button
-                android:id="@+id/calcButtonMultiplication"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/multiplication_text" />
-
-        <Button
-                android:id="@+id/calcButton0"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/number_0_text" />
-
-        <Button
-                android:id="@+id/calcButtonDot"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/dot_text" />
-
-        <Button
-                android:id="@+id/calcButtonBracket"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/bracket_text"/>
-
-        <Button
-                android:id="@+id/calcButtonDivision"
-                android:onClick="calcButton"
-                style="@style/CalcButtonControls"
-                android:text="@string/division_text" />
-
-    </GridLayout>
 </LinearLayout>
 
