@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.GridLayout;
-import android.widget.Toast;
 import pl.wtopolski.android.polishnotation.R;
 import pl.wtopolski.android.polishnotation.support.model.keyboard.*;
 import pl.wtopolski.android.polishnotation.support.model.rules.*;
@@ -18,6 +17,14 @@ import java.util.List;
 public class KeyBoard extends GridLayout {
     private List<KeyBoardButton> buttons;
     private List<KeyBoardGroup> groups;
+
+    public static final String SPECIAL_CHAR_MINUS = "-";
+    public static final String SPECIAL_CHAR_PLUS = "+";
+    public static final String SPECIAL_CHAR_DIVISION = "/";
+    public static final String SPECIAL_CHAR_MULTIPLICATION = "*";
+    public static final String SPECIAL_CHAR_DOT = ".";
+    public static final String SPECIAL_CHAR_START_BRACKET = "(";
+    public static final String SPECIAL_CHAR_END_BRACKET = ")";
 
     public KeyBoard(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -57,14 +64,7 @@ public class KeyBoard extends GridLayout {
         group.addButton(new InsertKeyBoardButton(view, R.id.calcButton7, "7"));
         group.addButton(new InsertKeyBoardButton(view, R.id.calcButton8, "8"));
         group.addButton(new InsertKeyBoardButton(view, R.id.calcButton9, "9"));
-        // TODO rules
-        groups.add(group);
-        buttons.addAll(group.getButtons());
-
-        // '-'
-        group = new KeyBoardGroup();
-        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonMinus, "-"));
-        // TODO rules
+        group.addRule(new NumberKeyBoardVisibleRule());
         groups.add(group);
         buttons.addAll(group.getButtons());
 
@@ -72,6 +72,15 @@ public class KeyBoard extends GridLayout {
         group = new KeyBoardGroup();
         group.addButton(new BracketKeyBoardButton(view, R.id.calcButtonBracket));
         // TODO rules
+        groups.add(group);
+        buttons.addAll(group.getButtons());
+
+        // '-'
+        group = new KeyBoardGroup();
+        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonMinus, SPECIAL_CHAR_MINUS));
+        group.addRule(new MinusPrevKeyBoardVisibleRule());
+        group.addRule(new MinusMiddleKeyBoardVisibleRule());
+        group.addRule(new MinusNextKeyBoardVisibleRule());
         groups.add(group);
         buttons.addAll(group.getButtons());
 
@@ -91,17 +100,18 @@ public class KeyBoard extends GridLayout {
 
         // '+' '/' '*'
         group = new KeyBoardGroup();
-        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonDivision, "/"));
-        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonMultiplication, "*"));
-        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonPlus, "+"));
+        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonDivision, SPECIAL_CHAR_DIVISION));
+        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonMultiplication, SPECIAL_CHAR_MULTIPLICATION));
+        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonPlus, SPECIAL_CHAR_PLUS));
         group.addRule(new OperationKeyBoardVisibleRule());
         groups.add(group);
         buttons.addAll(group.getButtons());
 
         // '.'
         group = new KeyBoardGroup();
-        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonDot, "."));
-        group.addRule(new DotKeyBoardVisibleRule());
+        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonDot, SPECIAL_CHAR_DOT));
+        group.addRule(new DotNextKeyBoardVisibleRule());
+        group.addRule(new DotPrevKeyBoardVisibleRule());
         groups.add(group);
         buttons.addAll(group.getButtons());
 
