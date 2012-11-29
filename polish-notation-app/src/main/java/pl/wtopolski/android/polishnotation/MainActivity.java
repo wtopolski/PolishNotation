@@ -45,6 +45,7 @@ public class MainActivity extends Activity implements CountListener {
 
         edit = (EditText) findViewById(R.id.edit);
         edit.setText("");
+        edit.setLongClickable(false);
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
