@@ -21,8 +21,8 @@
                 android:layout_weight="0"
                 android:hint="@string/edit_hint"
                 android:singleLine="true"
-                android:textSize="24dp"
-                android:scrollbars="vertical"
+                android:textSize="20dp"
+                android:scrollbars="horizontal"
                 android:saveEnabled="false"
                 android:textColorHint="@color/blue_light"
                 android:textColorHighlight="@color/red_light" />
@@ -42,6 +42,7 @@
                 android:orientation="vertical"
                 android:gravity="top|left"
                 android:padding="4dp"
+                android:scrollbars="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
