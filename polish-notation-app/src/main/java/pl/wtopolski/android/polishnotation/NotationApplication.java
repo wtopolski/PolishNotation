@@ -14,7 +14,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class NotationApplication extends Application implements CountListener, Handler.Callback {
-    private static final Logger LOG = LoggerFactory.getLogger(CountTask.class);
+    //private static final Logger LOG = LoggerFactory.getLogger(CountTask.class);
 
     private static Context context;
 
@@ -58,7 +58,7 @@ public class NotationApplication extends Application implements CountListener, H
                 externalListener.onResolve(result);
             }
         } catch (Exception e) {
-            LOG.error("Count Error", e.getMessage(), e);
+            //LOG.error("Count Error", e.getMessage(), e);
         }
         return true;
     }
