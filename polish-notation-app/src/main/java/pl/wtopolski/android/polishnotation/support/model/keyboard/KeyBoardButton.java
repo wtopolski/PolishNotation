@@ -1,5 +1,7 @@
 package pl.wtopolski.android.polishnotation.support.model.keyboard;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.text.Editable;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -11,14 +13,28 @@ public abstract class KeyBoardButton {
         return buttonId;
     }
 
-    public void setEnabled(View view, boolean enabled) {
-        int rotation = (enabled) ? 0 : 180;
-
+    public void setEnabled(final View view, boolean enabled) {
         ViewPropertyAnimator animator = view.animate();
-        animator.rotationX(rotation);
-        animator.start();
+        animator.setDuration(300);
 
-        view.setEnabled(enabled);
+        if (enabled) {
+            animator.alpha(1f);
+            animator.setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    view.setEnabled(true);
+                }
+            });
+        } else {
+            animator.alpha(0.7f);
+            animator.setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationStart(Animator animator) {
+                    view.setEnabled(false);
+                }
+            });
+        }
+        animator.start();
     }
 
     public abstract int execute(Editable editable, int position);
