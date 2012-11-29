@@ -135,7 +135,7 @@ public class MainActivity extends Activity implements CountListener {
         if (!number.contains(".")) {
             return number;
         }
-        return number.replaceAll(".?0*$", "");
+        return number.replaceAll("\\.?0*$", "");
     }
 
     private void onResolveNegative() {
