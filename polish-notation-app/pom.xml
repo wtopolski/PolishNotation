@@ -137,10 +137,20 @@
                             <goal>ndk-build</goal>
                         </goals>
                         <configuration>
-                            <sdk>
-                                <platform>14</platform>
-                            </sdk>
                             <attachNativeArtifacts>true</attachNativeArtifacts>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>alignApk</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>zipalign</goal>
+                        </goals>
+                        <configuration>
+                            <zipalign>
+                                <verbose>true</verbose>
+                                <skip>false</skip>
+                            </zipalign>
                         </configuration>
                     </execution>
                 </executions>
@@ -150,8 +160,9 @@
                     <sign>
                         <debug>false</debug>
                     </sign>
-                    <attachNativeArtifacts>true</attachNativeArtifacts>
-                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                    <sdk>
+                        <platform>14</platform>
+                    </sdk>
                 </configuration>
                 <extensions>true</extensions>
             </plugin>
