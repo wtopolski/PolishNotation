@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.wtopolski.android.polishnotation.support.model.CountResult;
@@ -14,7 +15,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class NotationApplication extends Application implements CountListener, Handler.Callback {
-    //private static final Logger LOG = LoggerFactory.getLogger(CountTask.class);
+    private static final String LOG_TAG = NotationApplication.class.getSimpleName();
 
     private static Context context;
 
@@ -58,7 +59,7 @@ public class NotationApplication extends Application implements CountListener, H
                 externalListener.onResolve(result);
             }
         } catch (Exception e) {
-            //LOG.error("Count Error", e.getMessage(), e);
+            Log.e(LOG_TAG, "Error", e);
         }
         return true;
     }
