@@ -11,8 +11,17 @@ public class MinusNextKeyBoardVisibleRule extends KeyBoardVisibleRule {
         String next = getNextChar(position, content);
         String secondNext = getNextChar(position, content, 1);
 
-        if (valueIsOperation(next) && (valueIsOperation(secondNext) || prev == null)) {
-            return false;
+        if (valueIsOperation(next)) {
+            if (prev == null) {
+                // ex. |-5...
+                return false;
+            } else if (valueIsOperation(secondNext)) {
+                // ex. ...3|--5...
+                return false;
+            } else if (valueIsBracket(secondNext)) {
+                // ex. ...6|-(4...
+                return false;
+            }
         }
 
         return true;
