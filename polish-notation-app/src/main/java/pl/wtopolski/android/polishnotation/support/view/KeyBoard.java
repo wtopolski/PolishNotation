@@ -52,6 +52,31 @@ public class KeyBoard extends GridLayout {
         groups = new LinkedList<KeyBoardGroup>();
         KeyBoardGroup group = null;
 
+        // '(' ')'
+        group = new KeyBoardGroup();
+        group.addButton(new BracketKeyBoardButton(view, R.id.calcButtonBracket));
+        // TODO rules
+        groups.add(group);
+        buttons.addAll(group.getButtons());
+
+        // '+' '/' '*'
+        group = new KeyBoardGroup();
+        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonDivision, SPECIAL_CHAR_DIVISION));
+        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonMultiplication, SPECIAL_CHAR_MULTIPLICATION));
+        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonPlus, SPECIAL_CHAR_PLUS));
+        group.addRule(new OperationKeyBoardVisibleRule());
+        groups.add(group);
+        buttons.addAll(group.getButtons());
+
+        // '-'
+        group = new KeyBoardGroup();
+        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonMinus, SPECIAL_CHAR_MINUS));
+        group.addRule(new MinusPrevKeyBoardVisibleRule());
+        group.addRule(new MinusMiddleKeyBoardVisibleRule());
+        group.addRule(new MinusNextKeyBoardVisibleRule());
+        groups.add(group);
+        buttons.addAll(group.getButtons());
+
         // Create number group.
         group = new KeyBoardGroup();
         group.addButton(new InsertKeyBoardButton(view, R.id.calcButton0, "0"));
@@ -68,19 +93,11 @@ public class KeyBoard extends GridLayout {
         groups.add(group);
         buttons.addAll(group.getButtons());
 
-        // '(' ')'
+        // '.'
         group = new KeyBoardGroup();
-        group.addButton(new BracketKeyBoardButton(view, R.id.calcButtonBracket));
-        // TODO rules
-        groups.add(group);
-        buttons.addAll(group.getButtons());
-
-        // '-'
-        group = new KeyBoardGroup();
-        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonMinus, SPECIAL_CHAR_MINUS));
-        group.addRule(new MinusPrevKeyBoardVisibleRule());
-        group.addRule(new MinusMiddleKeyBoardVisibleRule());
-        group.addRule(new MinusNextKeyBoardVisibleRule());
+        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonDot, SPECIAL_CHAR_DOT));
+        group.addRule(new DotNextKeyBoardVisibleRule());
+        group.addRule(new DotPrevKeyBoardVisibleRule());
         groups.add(group);
         buttons.addAll(group.getButtons());
 
@@ -95,23 +112,6 @@ public class KeyBoard extends GridLayout {
         group = new KeyBoardGroup();
         group.addButton(new NextKeyBoardButton(view, R.id.calcButtonNext));
         group.addRule(new NextKeyBoardVisibleRule());
-        groups.add(group);
-        buttons.addAll(group.getButtons());
-
-        // '+' '/' '*'
-        group = new KeyBoardGroup();
-        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonDivision, SPECIAL_CHAR_DIVISION));
-        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonMultiplication, SPECIAL_CHAR_MULTIPLICATION));
-        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonPlus, SPECIAL_CHAR_PLUS));
-        group.addRule(new OperationKeyBoardVisibleRule());
-        groups.add(group);
-        buttons.addAll(group.getButtons());
-
-        // '.'
-        group = new KeyBoardGroup();
-        group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonDot, SPECIAL_CHAR_DOT));
-        group.addRule(new DotNextKeyBoardVisibleRule());
-        group.addRule(new DotPrevKeyBoardVisibleRule());
         groups.add(group);
         buttons.addAll(group.getButtons());
 

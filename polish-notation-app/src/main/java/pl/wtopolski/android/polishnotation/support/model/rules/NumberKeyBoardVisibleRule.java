@@ -7,6 +7,7 @@ public class NumberKeyBoardVisibleRule extends KeyBoardVisibleRule {
     public boolean pass(int position, String content) {
         String prev = getPrevChar(position, content);
         if (SPECIAL_CHAR_END_BRACKET.equals(prev)) {
+            // ex. (1+2)|...
             return false;
         }
 
