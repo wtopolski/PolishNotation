@@ -21,7 +21,7 @@ public abstract class KeyBoardButton {
             animator.alpha(1f);
             animator.setListener(new AnimatorListenerAdapter() {
                 @Override
-                public void onAnimationEnd(Animator animator) {
+                public void onAnimationStart(Animator animator) {
                     view.setEnabled(true);
                 }
             });
