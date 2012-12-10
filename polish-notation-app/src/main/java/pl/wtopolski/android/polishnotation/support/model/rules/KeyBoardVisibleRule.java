@@ -50,7 +50,7 @@ public abstract class KeyBoardVisibleRule {
                 || SPECIAL_CHAR_END_BRACKET.equals(value);
     }
 
-    protected boolean valueIsOperation(String value) {
+    public static boolean valueIsOperation(String value) {
         if (TextUtils.isEmpty(value)) {
             return false;
         }

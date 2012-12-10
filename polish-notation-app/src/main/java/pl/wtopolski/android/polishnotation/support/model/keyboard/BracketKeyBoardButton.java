@@ -1,8 +1,12 @@
 package pl.wtopolski.android.polishnotation.support.model.keyboard;
 
 import android.text.Editable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import pl.wtopolski.android.polishnotation.support.model.rules.BracketKeyBoardVisibleRule;
+import pl.wtopolski.android.polishnotation.support.model.rules.KeyBoardVisibleRule;
+import pl.wtopolski.android.polishnotation.support.view.KeyBoard;
 
 public class BracketKeyBoardButton extends KeyBoardButton {
     private Button button;
@@ -18,11 +22,26 @@ public class BracketKeyBoardButton extends KeyBoardButton {
         int length = content.length();
 
         if (length > 0) {
-            char lastChar = content.charAt(length - 1);
-            if (lastChar == '-' || lastChar == '+' || lastChar == '*' || lastChar == '/') {
+            String lastChar = String.valueOf(content.charAt(length - 1));
+            boolean isBracketOpen = BracketKeyBoardVisibleRule.isBracketOpen(content, position);
+
+            if (KeyBoardVisibleRule.valueIsOperation(lastChar)) {
+                // - + / *
                 editable.insert(position, "(");
-            } else {
+            } else if (KeyBoard.SPECIAL_CHAR_START_BRACKET.equals(lastChar)) {
+                // (
+                editable.insert(position, "(");
+            } else if (isBracketOpen && TextUtils.isDigitsOnly(lastChar)) {
+                // [0-9]
                 editable.insert(position, ")");
+            } else if (isBracketOpen && KeyBoard.SPECIAL_CHAR_DOT.equals(lastChar)) {
+                // ,
+                editable.insert(position, ")");
+            } else if (isBracketOpen && KeyBoard.SPECIAL_CHAR_END_BRACKET.equals(lastChar)) {
+                // )
+                editable.insert(position, ")");
+            } else {
+                return position;
             }
         } else {
             editable.insert(position, "(");

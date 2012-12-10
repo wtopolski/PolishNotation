@@ -55,7 +55,7 @@ public class KeyBoard extends GridLayout {
         // '(' ')'
         group = new KeyBoardGroup();
         group.addButton(new BracketKeyBoardButton(view, R.id.calcButtonBracket));
-        // TODO rules
+        group.addRule(new BracketKeyBoardVisibleRule());
         groups.add(group);
         buttons.addAll(group.getButtons());
 
