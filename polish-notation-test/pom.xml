@@ -5,12 +5,12 @@
     <parent>
         <artifactId>polish-notation</artifactId>
         <groupId>pl.wtopolski.android</groupId>
-        <version>0.0.5</version>
+        <version>0.0.6-SNAPSHOT</version>
     </parent>
 
     <groupId>pl.wtopolski.android</groupId>
     <artifactId>polish-notation-test</artifactId>
-    <version>0.0.5</version>
+    <version>0.0.6-SNAPSHOT</version>
     <packaging>apk</packaging>
     <name>PolishNotationTest</name>
 
@@ -73,14 +73,14 @@
             <groupId>pl.wtopolski.android</groupId>
             <artifactId>polish-notation-app</artifactId>
             <type>apk</type>
-            <version>0.0.5</version>
+            <version>0.0.6-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>pl.wtopolski.android</groupId>
             <artifactId>polish-notation-app</artifactId>
             <scope>provided</scope>
             <type>jar</type>
-            <version>0.0.5</version>
+            <version>0.0.6-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
