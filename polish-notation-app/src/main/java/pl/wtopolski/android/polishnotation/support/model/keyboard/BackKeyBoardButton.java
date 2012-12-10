@@ -9,9 +9,10 @@ import android.widget.ImageButton;
 public class BackKeyBoardButton extends KeyBoardButton {
     private ImageButton button;
 
-    public BackKeyBoardButton(View parent, int buttonId) {
+    public BackKeyBoardButton(View parent, int buttonId, int widthInPixels, int heightInPixels) {
         this.buttonId = buttonId;
         button = (ImageButton) parent.findViewById(buttonId);
+        setViewSize(button, widthInPixels, heightInPixels);
     }
 
     @Override

@@ -46,7 +46,6 @@ public class BracketKeyBoardVisibleRule extends KeyBoardVisibleRule {
 
     public static boolean isBracketOpen(String content, int position) {
         String prevContent = content.substring(0, position);
-        Log.d("wtopolski", prevContent);
 
         int start = 0;
         int stop = 0;
@@ -58,9 +57,6 @@ public class BracketKeyBoardVisibleRule extends KeyBoardVisibleRule {
                 stop++;
             }
         }
-
-        Log.d("wtopolski", "start: " + start);
-        Log.d("wtopolski", "stop: " + stop);
 
         return start > stop;
     }

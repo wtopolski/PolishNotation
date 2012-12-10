@@ -11,9 +11,10 @@ import pl.wtopolski.android.polishnotation.support.view.KeyBoard;
 public class BracketKeyBoardButton extends KeyBoardButton {
     private Button button;
 
-    public BracketKeyBoardButton(View parent, int buttonId) {
+    public BracketKeyBoardButton(View parent, int buttonId, int widthInPixels, int heightInPixels) {
         this.buttonId = buttonId;
         button = (Button) parent.findViewById(buttonId);
+        setViewSize(button, widthInPixels, heightInPixels);
     }
 
     @Override

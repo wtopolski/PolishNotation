@@ -10,10 +10,11 @@ public class InsertKeyBoardButton extends KeyBoardButton {
     private String content;
     private Button button;
 
-    public InsertKeyBoardButton(View parent, int buttonId, String content) {
+    public InsertKeyBoardButton(View parent, int buttonId, String content, int widthInPixels, int heightInPixels) {
         this.buttonId = buttonId;
         this.content = content;
         button = (Button) parent.findViewById(buttonId);
+        setViewSize(button, widthInPixels, heightInPixels);
     }
 
     @Override

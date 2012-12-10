@@ -7,9 +7,10 @@ import android.widget.ImageButton;
 public class NextKeyBoardButton extends KeyBoardButton {
     private ImageButton button;
 
-    public NextKeyBoardButton(View parent, int buttonId) {
+    public NextKeyBoardButton(View parent, int buttonId, int widthInPixels, int heightInPixels) {
         this.buttonId = buttonId;
         button = (ImageButton) parent.findViewById(buttonId);
+        setViewSize(button, widthInPixels, heightInPixels);
     }
 
     @Override

@@ -97,14 +97,14 @@
 
     <pl.wtopolski.android.polishnotation.support.view.KeyBoard
             android:id="@+id/keyboard"
-            android:layout_width="320dp"
-            android:layout_height="258dp"
+            android:layout_width="@dimen/keyboard_width"
+            android:layout_height="@dimen/keyboard_height"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="4dp"
             android:layout_weight="0"
-            android:padding="4dp"
+            android:padding="@dimen/keyboard_padding"
             android:background="@drawable/panel_bg"
-            android:useDefaultMargins="false"
+            android:useDefaultMargins="true"
             android:alignmentMode="alignMargins"
             android:columnOrderPreserved="true"
             android:columnCount="4" />
