@@ -64,7 +64,8 @@ public class KeyBoard extends GridLayout {
         group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonDivision, SPECIAL_CHAR_DIVISION));
         group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonMultiplication, SPECIAL_CHAR_MULTIPLICATION));
         group.addButton(new InsertKeyBoardButton(view, R.id.calcButtonPlus, SPECIAL_CHAR_PLUS));
-        group.addRule(new OperationKeyBoardVisibleRule());
+        group.addRule(new OperationPrevKeyBoardVisibleRule());
+        group.addRule(new OperationNextKeyBoardVisibleRule());
         groups.add(group);
         buttons.addAll(group.getButtons());
 
