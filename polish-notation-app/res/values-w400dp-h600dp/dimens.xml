@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common -->
+    <dimen name="common_width">370dp</dimen>
+
+    <!--Editbox -->
+    <dimen name="editbox_text_size">20dp</dimen>
+
+    <!-- Info -->
+    <dimen name="info_text_size">22dp</dimen>
+
+    <!-- Keyboard -->
+    <dimen name="keyboard_height">258dp</dimen>
+    <dimen name="keyboard_padding">4dp</dimen>
+    <dimen name="keyboard_button_margin">2dp</dimen>
+    <dimen name="keyboard_button_text_size">24dp</dimen>
+
+</resources>

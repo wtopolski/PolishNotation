@@ -53,7 +53,7 @@ public class KeyBoard extends GridLayout {
         groups = new LinkedList<KeyBoardGroup>();
         KeyBoardGroup group = null;
 
-        float keyboardWidth = getContext().getResources().getDimension(R.dimen.keyboard_width);
+        float keyboardWidth = getContext().getResources().getDimension(R.dimen.common_width);
         float keyboardHeight = getContext().getResources().getDimension(R.dimen.keyboard_height);
         float keyboardPadding = getContext().getResources().getDimension(R.dimen.keyboard_padding);
         float keyboardButtonMargin = getContext().getResources().getDimension(R.dimen.keyboard_button_margin);

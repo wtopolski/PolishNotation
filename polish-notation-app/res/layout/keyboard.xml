@@ -5,6 +5,7 @@
             android:id="@+id/calcButtonClear"
             android:onClick="onKeyBoardButtonClick"
             style="@style/CalcButtonControls"
+            android:scaleType="centerInside"
             android:src="@drawable/ic_action_calc_clean" />
 
     <ImageButton

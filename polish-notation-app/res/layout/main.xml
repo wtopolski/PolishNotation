@@ -8,7 +8,7 @@
      android:layout_height="match_parent">
 
     <LinearLayout
-            android:layout_width="320dp"
+            android:layout_width="@dimen/common_width"
             android:layout_height="40dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="2dp"
@@ -21,7 +21,7 @@
                 android:layout_weight="0"
                 android:hint="@string/edit_hint"
                 android:singleLine="true"
-                android:textSize="20dp"
+                android:textSize="@dimen/editbox_text_size"
                 android:scrollbars="horizontal"
                 android:saveEnabled="false"
                 android:textColorHint="@color/blue_light"
@@ -30,7 +30,7 @@
     </LinearLayout>
 
     <ScrollView
-            android:layout_width="320dp"
+            android:layout_width="@dimen/common_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_marginTop="2dp"
@@ -48,7 +48,7 @@
 
             <TextView
                     android:id="@+id/request"
-                    android:textSize="22dp"
+                    android:textSize="@dimen/info_text_size"
                     android:shadowColor="@android:color/white"
                     android:shadowDx="0"
                     android:shadowDy="0"
@@ -65,7 +65,7 @@
 
             <TextView
                     android:id="@+id/prefix"
-                    android:textSize="22dp"
+                    android:textSize="@dimen/info_text_size"
                     android:shadowColor="@android:color/black"
                     android:shadowDx="0"
                     android:shadowDy="0"
@@ -82,7 +82,7 @@
 
             <TextView
                     android:id="@+id/postfix"
-                    android:textSize="22dp"
+                    android:textSize="@dimen/info_text_size"
                     android:shadowColor="@android:color/black"
                     android:shadowDx="0"
                     android:shadowDy="0"
@@ -97,7 +97,7 @@
 
     <pl.wtopolski.android.polishnotation.support.view.KeyBoard
             android:id="@+id/keyboard"
-            android:layout_width="@dimen/keyboard_width"
+            android:layout_width="@dimen/common_width"
             android:layout_height="@dimen/keyboard_height"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="4dp"
