@@ -20,25 +20,24 @@ public class BracketKeyBoardButton extends KeyBoardButton {
     @Override
     public int execute(Editable editable, int position) {
         String content = editable.toString();
-        int length = content.length();
 
-        if (length > 0) {
-            String lastChar = String.valueOf(content.charAt(length - 1));
+        if (position > 0) {
+            String prevChar = String.valueOf(content.charAt(position - 1));
             boolean isBracketOpen = BracketKeyBoardVisibleRule.isBracketOpen(content, position);
 
-            if (KeyBoardVisibleRule.valueIsOperation(lastChar)) {
+            if (KeyBoardVisibleRule.valueIsOperation(prevChar)) {
                 // - + / *
                 editable.insert(position, "(");
-            } else if (KeyBoard.SPECIAL_CHAR_START_BRACKET.equals(lastChar)) {
+            } else if (KeyBoard.SPECIAL_CHAR_START_BRACKET.equals(prevChar)) {
                 // (
                 editable.insert(position, "(");
-            } else if (isBracketOpen && TextUtils.isDigitsOnly(lastChar)) {
+            } else if (isBracketOpen && TextUtils.isDigitsOnly(prevChar)) {
                 // [0-9]
                 editable.insert(position, ")");
-            } else if (isBracketOpen && KeyBoard.SPECIAL_CHAR_DOT.equals(lastChar)) {
+            } else if (isBracketOpen && KeyBoard.SPECIAL_CHAR_DOT.equals(prevChar)) {
                 // ,
                 editable.insert(position, ")");
-            } else if (isBracketOpen && KeyBoard.SPECIAL_CHAR_END_BRACKET.equals(lastChar)) {
+            } else if (isBracketOpen && KeyBoard.SPECIAL_CHAR_END_BRACKET.equals(prevChar)) {
                 // )
                 editable.insert(position, ")");
             } else {
