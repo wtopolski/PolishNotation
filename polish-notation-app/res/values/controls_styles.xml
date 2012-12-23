@@ -45,6 +45,17 @@
       <item name="android:shadowRadius">2</item>
   </style>
 
+   <style name="CalcPanelTextViewControls" parent="TextViewControls">
+       <item name="android:textStyle">normal</item>
+       <item name="android:textSize">@dimen/info_text_size</item>
+       <item name="android:shadowDx">0</item>
+       <item name="android:shadowDy">0</item>
+       <item name="android:shadowRadius">1</item>
+       <item name="android:layout_weight">1</item>
+       <item name="android:layout_width">match_parent</item>
+       <item name="android:layout_height">wrap_content</item>
+   </style>
+
   <style name="ImageButtonControls" parent="android:Widget.ImageButton">
 	  <item name="android:background">@drawable/btn_default_holo_dark</item>
   </style>

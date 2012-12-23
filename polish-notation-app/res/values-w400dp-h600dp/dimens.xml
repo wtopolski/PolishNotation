@@ -11,7 +11,10 @@
 
     <!-- Keyboard -->
     <dimen name="keyboard_height">258dp</dimen>
-    <dimen name="keyboard_padding">4dp</dimen>
+    <dimen name="keyboard_padding_top">4dp</dimen>
+    <dimen name="keyboard_padding_bottom">4dp</dimen>
+    <dimen name="keyboard_padding_left">4dp</dimen>
+    <dimen name="keyboard_padding_right">4dp</dimen>
     <dimen name="keyboard_button_margin">2dp</dimen>
     <dimen name="keyboard_button_text_size">24dp</dimen>
 

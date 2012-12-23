@@ -33,8 +33,8 @@
             android:layout_width="@dimen/common_width"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
             android:fillViewport="true"
             android:background="@drawable/panel_bg">
 
@@ -48,14 +48,8 @@
 
             <TextView
                     android:id="@+id/request"
-                    android:textSize="@dimen/info_text_size"
                     android:shadowColor="@android:color/white"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
-                    android:shadowRadius="1"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    style="@style/CalcPanelTextViewControls" />
 
             <View
                     android:layout_weight="0"
@@ -65,14 +59,8 @@
 
             <TextView
                     android:id="@+id/prefix"
-                    android:textSize="@dimen/info_text_size"
                     android:shadowColor="@android:color/black"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
-                    android:shadowRadius="1"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    style="@style/CalcPanelTextViewControls" />
 
             <View
                     android:layout_weight="0"
@@ -82,14 +70,8 @@
 
             <TextView
                     android:id="@+id/postfix"
-                    android:textSize="@dimen/info_text_size"
                     android:shadowColor="@android:color/black"
-                    android:shadowDx="0"
-                    android:shadowDy="0"
-                    android:shadowRadius="1"
-                    android:layout_weight="1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    style="@style/CalcPanelTextViewControls" />
 
         </LinearLayout>
 
@@ -99,13 +81,14 @@
             android:id="@+id/keyboard"
             android:layout_width="@dimen/common_width"
             android:layout_height="@dimen/keyboard_height"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="2dp"
             android:layout_weight="0"
-            android:padding="@dimen/keyboard_padding"
+            android:paddingTop="@dimen/keyboard_padding_top"
+            android:paddingBottom="@dimen/keyboard_padding_bottom"
+            android:paddingRight="@dimen/keyboard_padding_right"
+            android:paddingLeft="@dimen/keyboard_padding_left"
             android:background="@drawable/panel_bg"
-            android:useDefaultMargins="true"
-            android:alignmentMode="alignMargins"
             android:columnOrderPreserved="true"
             android:columnCount="4" />
 

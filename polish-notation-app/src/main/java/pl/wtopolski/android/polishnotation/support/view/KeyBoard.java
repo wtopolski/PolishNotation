@@ -55,14 +55,17 @@ public class KeyBoard extends GridLayout {
 
         float keyboardWidth = getContext().getResources().getDimension(R.dimen.common_width);
         float keyboardHeight = getContext().getResources().getDimension(R.dimen.keyboard_height);
-        float keyboardPadding = getContext().getResources().getDimension(R.dimen.keyboard_padding);
+        float keyboardPaddingTop = getContext().getResources().getDimension(R.dimen.keyboard_padding_top);
+        float keyboardPaddingBottom = getContext().getResources().getDimension(R.dimen.keyboard_padding_bottom);
+        float keyboardPaddingLeft = getContext().getResources().getDimension(R.dimen.keyboard_padding_left);
+        float keyboardPaddingRight = getContext().getResources().getDimension(R.dimen.keyboard_padding_right);
         float keyboardButtonMargin = getContext().getResources().getDimension(R.dimen.keyboard_button_margin);
 
         // 8 margins (two sides for four buttons) and twice padding - top and bottom.
-        float widthSpaceForButtons = keyboardWidth - (keyboardButtonMargin * 8f + keyboardPadding * 2f);
+        float widthSpaceForButtons = keyboardWidth - (keyboardButtonMargin * 8f + keyboardPaddingLeft + keyboardPaddingRight);
 
         // 10 margins (two sides for five buttons) and twice padding - top and bottom.
-        float heightSpaceForButtons = keyboardHeight - (keyboardButtonMargin * 10f + keyboardPadding * 2f);
+        float heightSpaceForButtons = keyboardHeight - (keyboardButtonMargin * 10f + keyboardPaddingTop + keyboardPaddingBottom);
 
         int buttonWidth = (int)(widthSpaceForButtons / 4f);
         int buttonHeight = (int)(heightSpaceForButtons / 5f);

@@ -8,11 +8,14 @@
     <dimen name="editbox_text_size">18dp</dimen>
 
     <!-- Info -->
-    <dimen name="info_text_size">20dp</dimen>
+    <dimen name="info_text_size">18dp</dimen>
 
     <!-- Keyboard -->
-    <dimen name="keyboard_height">200dp</dimen>
-    <dimen name="keyboard_padding">2dp</dimen>
+    <dimen name="keyboard_height">193dp</dimen>
+    <dimen name="keyboard_padding_top">3dp</dimen>
+    <dimen name="keyboard_padding_bottom">0dp</dimen>
+    <dimen name="keyboard_padding_left">2dp</dimen>
+    <dimen name="keyboard_padding_right">0dp</dimen>
     <dimen name="keyboard_button_margin">1dp</dimen>
     <dimen name="keyboard_button_text_size">20dp</dimen>
 </resources>
