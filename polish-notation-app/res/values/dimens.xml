@@ -9,6 +9,7 @@
 
     <!-- Info -->
     <dimen name="info_text_size">18dp</dimen>
+    <dimen name="description_text_size">16dp</dimen>
 
     <!-- Keyboard -->
     <dimen name="keyboard_height">193dp</dimen>
