@@ -5,4 +5,92 @@
 
     <!-- Menu -->
     <string name="menu_info">About notation</string>
+
+    <!-- Info -->
+    <string name="notation_description">
+        <![CDATA[
+        <b>Polish notation</b>, also known as <b>Polish prefix notation</b> or simply <b>prefix notation</b>, is a form of notation for
+        logic, arithmetic, and algebra. Its distinguishing feature is that it places operators to the left of their operands. If the arity
+        of the operators is fixed, the result is a syntax lacking parentheses or other brackets that can still be parsed without ambiguity.
+        The Polish logician Jan Łukasiewicz invented this notation around 1920 in order to simplify sentential logic.
+        <br /><br />
+
+        The term Polish notation is sometimes taken (as the opposite of infix notation) to also include Polish postfix notation, or
+        Reverse Polish notation, in which the operator is placed after the operands.
+        <br /><br />
+
+        When Polish notation is used as a syntax for mathematical expressions by interpreters of programming languages, it is readily
+        parsed into abstract syntax trees and can, in fact, define a one-to-one representation for the same. Because of this, Lisp
+        and related programming languages define their entire syntax in terms of prefix notation (and others use postfix
+        notation).
+        <br /><br />
+
+        While no longer used much in logic, Polish notation has since found a place in computer science.
+        <br />
+
+        <h1>Arithmetic</h1>
+
+        The expression for adding the numbers 1 and 2 is, in prefix notation, written "+ 1 2" rather than "1 + 2". In more complex
+        expressions, the operators still precede their operands, but the operands may themselves be nontrivial expressions including
+        operators of their own. For instance, the expression that would be written in conventional infix notation as
+        <b>(5 − 6) * 7</b> can be written in prefix as <b>* (− 5 6) 7</b>. Since the simple arithmetic operators are all binary (at least,
+        in arithmetic contexts), any prefix representation thereof is unambiguous, and bracketing the prefix expression is unnecessary.
+        As such, the previous expression can be further simplified to <b>* − 5 6 7</b>.
+        <br /><br />
+
+        The processing of the product is deferred until its two operands are available (i.e., 5 minus 6, and 7). As with any notation,
+        the innermost expressions are evaluated first, but in prefix notation this "innermost-ness" can be conveyed by order rather than
+        bracketing. In the classical notation, the parentheses in the infix version were required, since moving them <b>5 − (6 * 7)</b>
+        or simply removing them <b>5 − 6 * 7</b> would change the meaning and result of the overall expression, due to the precedence rule.
+        <br /><br />
+
+        Similarly <b>5 − (6 * 7)</b> can be written in Polish notation as <b>− 5 * 6 7</b>.
+        <br />
+		<a href="http://en.wikipedia.org/wiki/Polish_notation"><i>(source: Wikipedia)</i></a>
+
+		<h1>Reverse Polish notation</h1>
+
+        Reverse Polish notation (RPN) is a mathematical notation in which every operator follows all of its operands, in contrast to
+        Polish notation, which puts the operator in the prefix position. It is also known as postfix notation and is parenthesis-free as
+        long as operator arities are fixed. The description "Polish" refers to the nationality of logician Jan Łukasiewicz, who invented
+        (prefix) Polish notation in the 1920s.
+        <br /><br />
+
+        The reverse Polish scheme was proposed in 1954 by Burks, Warren, and Wright and was independently reinvented by F. L. Bauer and
+        E. W. Dijkstra in the early 1960s to reduce computer memory access and utilize the stack to evaluate expressions. The algorithms
+        and notation for this scheme were extended by Australian philosopher and computer scientist Charles Hamblin in the mid-1950s.
+        <br /><br />
+
+        During the 1970s and 1980s, RPN was known to many calculator users, as it was used in some handheld calculators of the time
+        designed for advanced users: for example, the HP-10C series and Sinclair Scientific calculators.
+        <br /><br />
+
+        In computer science, postfix notation is often used in stack-based and concatenative programming languages. It is also common
+        in dataflow and pipeline-based systems, including Unix pipelines.
+        <br /><br />
+
+        Most of what follows is about binary operators. A unary operator for which the reverse Polish notation is the general convention
+        is the factorial.
+
+        <h1>Explanation</h1>
+
+        In reverse Polish notation the operators follow their operands; for instance, to add 3 and 4, one would write <b>3 4 +</b> rather than
+        <b>3 + 4</b>. If there are multiple operations, the operator is given immediately after its second operand; so the expression written
+        <b>3 − 4 + 5</b> in conventional notation would be written <b>3 4 − 5 +</b> in RPN: first subtract 4 from 3, then add 5 to that. An
+        advantage of RPN is that it obviates the need for parentheses that are required by infix. While <b>3 − 4 * 5</b> can also be written
+        <b>3 − (4 * 5)</b>, that means something quite different from <b>(3 − 4) * 5</b>. In postfix, the former could be written <b>3 4 5 * −</b>,
+        which unambiguously means <b>3 (4 5 *) −</b> which reduces to <b>3 20 −</b>; the latter could be written <b>3 4 - 5 *</b> (or <b>5 3 4 - *</b>, if
+        you wish to keep similar formatting), which unambiguously means <b>(3 4 -) 5 *</b>.
+        <br /><br />
+
+        Despite the name, reverse Polish notation is not exactly the reverse of Polish notation, for the operands of non-commutative
+        operations are still written in the conventional order (e.g. <b>/ 6 3</b> in Polish notation and <b>6 3 /</b> in reverse Polish both
+        evaluating to 2, whereas <b>3 6 /</b> in reverse Polish notation would evaluate to ½).
+        <br />
+
+		<a href="http://en.wikipedia.org/wiki/Reverse_Polish_notation"><i>(source: Wikipedia)</i></a>
+        <br />
+        ]]>
+    </string>
+
 </resources>

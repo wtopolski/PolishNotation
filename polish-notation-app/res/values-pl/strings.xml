@@ -5,4 +5,58 @@
 
     <!-- Menu -->
     <string name="menu_info">O notacji</string>
+
+    <!-- Info -->
+    <string name="notation_description">
+        <![CDATA[
+    	<b>Notacja polska, zapis przedrostkowy, Notacja Łukasiewicza</b> – sposób zapisu wyrażeń logicznych (a później arytmetycznych),
+    	podający najpierw operator, a potem operandy (argumenty). Został przedstawiony w 1920 roku przez polskiego filozofa i logika
+    	Jana Łukasiewicza. Różniła się ona od zapisów nawiasowych używanych, m.in., przez klasyczne dzieło formalizmu logicznego
+    	Principia Mathematica Bertranda Russella i A. N. Whiteheada. Według Jana Woleńskiego, notacja ta pozwala na łatwiejsze
+    	przeprowadzanie operacji na formułach o znacznej długości; formuły krótsze wydają się bardziej "intuitywne".
+		Notacja ta używana jest w logice znacznie rzadziej niż notacja nawiasowa; wśród niepolskojęzycznych naukowców używających jej
+		znajduje się m.in. Arthur Prior. Obecnie informatyka jest jedynym polem, gdzie notacja ta jest wciąż popularna.
+		<br />
+
+		<h1>Notacja w arytmetyce</h1>
+
+		Wyrażenie w notacji polskiej nie wymaga nawiasów, ponieważ przypisanie argumentów do operatorów wynika wprost z ich kolejności
+		w zapisie, o ile z góry znana jest liczba argumentów poszczególnych operatorów. Na przykład zakładając, że operatory <i>/</i> i
+		<i>+</i> są binarne, zapis w notacji polskiej: <b>/ 7 + 2 3</b> interpretuje się jednoznacznie jako równoważny notacji tradycyjnej
+		(zapisowi wrostkowemu): <b>7 / (2 + 3)</b>.
+		<br />
+
+		<a href="http://pl.wikipedia.org/wiki/Notacja_polska"><i>(żródło: Wikipedia)</i></a>
+
+		<h1>Odwrotna notacja polska</h1>
+
+		<b>Odwrotna notacja polska</b> (ONP, ang. Reverse Polish Notation, RPN) – jest sposobem zapisu wyrażeń arytmetycznych, w którym
+		znak wykonywanej operacji umieszczony jest po operandach (zapis postfiksowy), a nie pomiędzy nimi jak w konwencjonalnym zapisie
+		algebraicznym (zapis infiksowy) lub przed operandami jak w zwykłej notacji polskiej (zapis prefiksowy). Zapis ten pozwala na
+		całkowitą rezygnację z użycia nawiasów w wyrażeniach, jako że jednoznacznie określa kolejność wykonywanych działań.
+		<br />
+
+		ONP bardzo ułatwia wykonywanie na komputerze obliczeń z nawiasami i zachowaniem kolejności działań. Zarówno algorytm konwersji notacji
+		konwencjonalnej (infiksowej) na odwrotną notację polską (postfiksową), jak i algorytm obliczania wartości wyrażenia danego w ONP
+		są bardzo proste i wykorzystują stos.
+		<br />
+
+		Odwrotna notacja polska została opracowana przez australijskiego naukowca Charlesa Hamblina jako "odwrócenie" beznawiasowej
+		notacji polskiej Jana Łukasiewicza na potrzeby zastosowań informatycznych. Hamblin sugerował, aby notację tę nazwać "Azciweisakul
+		notation" (Notacja Azciweisakuł – "Łukasiewicza" pisane od tyłu).
+		<br /><br />
+
+        Jest używana w niektórych językach programowania (np. FORTH, Postscript) oraz w niektórych kalkulatorach naukowych (np.
+        Hewlett-Packard, National Semiconductor). Programy komputerowe kompilujące program dokonują analizy wyrażenia arytmetycznego,
+        przekształcając je na ciąg instrukcji odpowiadający odwrotnej notacji polskiej. Wyrażenie to jest obliczane podczas wykonywania
+        programu.
+		<br /><br />
+
+        Przykładowy konwencjonalny zapis: <b>((2+7)/3+(14-3)*4)/2</b> w ONP wygląda tak: <b>2 7 + 3 / 14 3 - 4 * + 2 /<b>
+        <br />
+
+		<a href="http://pl.wikipedia.org/wiki/Odwrotna_notacja_polska"><i>(żródło: Wikipedia)</i></a>
+		<br />
+        ]]>
+    </string>
 </resources>
