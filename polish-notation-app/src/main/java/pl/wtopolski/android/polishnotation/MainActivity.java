@@ -1,10 +1,13 @@
 package pl.wtopolski.android.polishnotation;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,9 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.wtopolski.android.polishnotation.support.JniHelper;
 import pl.wtopolski.android.polishnotation.support.NotationUtil;
-import pl.wtopolski.android.polishnotation.support.exception.BracketException;
 import pl.wtopolski.android.polishnotation.support.model.CountResult;
 import pl.wtopolski.android.polishnotation.support.storage.Properties;
 import pl.wtopolski.android.polishnotation.support.task.CountListener;
@@ -98,6 +99,22 @@ public class MainActivity extends Activity implements CountListener {
         app.makeRequest(content);
 
         editSelectionUpdate();
+    }
+
+    public void contentOnClick(View view) {
+        TextView tv = (TextView) view;
+        String content = tv.getText().toString();
+
+        if (TextUtils.isEmpty(content)) {
+            return;
+        }
+
+        String copyMessage = getString(R.string.copy_message);
+        Toast.makeText(this, copyMessage + " " + content, Toast.LENGTH_SHORT).show();
+
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Polish Notation Content", content);
+        clipboard.setPrimaryClip(clip);
     }
 
     public void editSelectionUpdate() {
