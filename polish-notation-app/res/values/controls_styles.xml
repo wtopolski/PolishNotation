@@ -46,6 +46,7 @@
   </style>
 
    <style name="CalcPanelTextViewControls" parent="TextViewControls">
+       <item name="android:background">@drawable/info_selector</item>
        <item name="android:textStyle">normal</item>
        <item name="android:textSize">@dimen/info_text_size</item>
        <item name="android:shadowDx">0</item>
