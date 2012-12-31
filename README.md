@@ -7,4 +7,4 @@ Application presents conversion arithmetic statements to polish notation and rev
 usage, application contains simple calculator. Example polish notation is conversion from "7 / (2 3)" to "/ 7 + 2 3",
 reverse polish notation is from "(2 +3) * 5" to "2 3 + 5 *".
 
-![My image](https://github.com/wtopolski/PolishNotation/blob/master/docs/jayressler0.jpeg)
+![My image](http://github.com/wtopolski/PolishNotation/blob/master/docs/jayressler0.jpeg)
