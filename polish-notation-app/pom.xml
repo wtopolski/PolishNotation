@@ -191,5 +191,9 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>google</groupId>
+            <artifactId>analytics</artifactId>
+        </dependency>
     </dependencies>
 </project>

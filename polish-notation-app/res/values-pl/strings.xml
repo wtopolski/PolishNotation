@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Notacja Polska</string>
     <string name="info_label">O notacji</string>
+    <string name="copy_message">Skopionano zawartość do schowka:</string>
 
     <!-- Menu -->
     <string name="menu_info">O notacji</string>

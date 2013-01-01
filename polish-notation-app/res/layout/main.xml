@@ -49,6 +49,8 @@
             <TextView
                     android:id="@+id/request"
                     android:shadowColor="@android:color/white"
+                    android:onClick="contentOnClick"
+                    android:clickable="true"
                     style="@style/CalcPanelTextViewControls" />
 
             <View
@@ -60,6 +62,8 @@
             <TextView
                     android:id="@+id/prefix"
                     android:shadowColor="@android:color/black"
+                    android:onClick="contentOnClick"
+                    android:clickable="true"
                     style="@style/CalcPanelTextViewControls" />
 
             <View
@@ -71,6 +75,8 @@
             <TextView
                     android:id="@+id/postfix"
                     android:shadowColor="@android:color/black"
+                    android:onClick="contentOnClick"
+                    android:clickable="true"
                     style="@style/CalcPanelTextViewControls" />
 
         </LinearLayout>

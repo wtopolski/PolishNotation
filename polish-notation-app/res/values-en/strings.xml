@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">Polish Notation</string>
     <string name="info_label">About notation</string>
+    <string name="copy_message">Copy content to the Clipboard:</string>
 
     <!-- Menu -->
     <string name="menu_info">About notation</string>

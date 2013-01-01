@@ -1,10 +1,13 @@
 package pl.wtopolski.android.polishnotation;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,11 +16,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Tracker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pl.wtopolski.android.polishnotation.support.JniHelper;
 import pl.wtopolski.android.polishnotation.support.NotationUtil;
-import pl.wtopolski.android.polishnotation.support.exception.BracketException;
 import pl.wtopolski.android.polishnotation.support.model.CountResult;
 import pl.wtopolski.android.polishnotation.support.storage.Properties;
 import pl.wtopolski.android.polishnotation.support.task.CountListener;
@@ -98,6 +101,24 @@ public class MainActivity extends Activity implements CountListener {
         app.makeRequest(content);
 
         editSelectionUpdate();
+
+        EasyTracker.getInstance().activityStart(this);
+    }
+
+    public void contentOnClick(View view) {
+        TextView tv = (TextView) view;
+        String content = tv.getText().toString();
+
+        if (TextUtils.isEmpty(content)) {
+            return;
+        }
+
+        String copyMessage = getString(R.string.copy_message);
+        Toast.makeText(this, copyMessage + " " + content, Toast.LENGTH_SHORT).show();
+
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Polish Notation Content", content);
+        clipboard.setPrimaryClip(clip);
     }
 
     public void editSelectionUpdate() {
@@ -116,6 +137,8 @@ public class MainActivity extends Activity implements CountListener {
 
         int position = edit.getSelectionStart();
         Properties.setEditValuePosition(position);
+
+        EasyTracker.getInstance().activityStop(this);
     }
 
     public void onKeyBoardButtonClick(View view) {
@@ -150,6 +173,13 @@ public class MainActivity extends Activity implements CountListener {
 
         prefixText.setText(prefix);
         postfixText.setText(postfix);
+
+        trackEvent(request, prefix, postfix);
+    }
+
+    private void trackEvent(String request, String prefix, String postfix) {
+        Tracker tracker = EasyTracker.getTracker();
+        tracker.trackEvent("calculations", "request", request + ";" + prefix + ";" + postfix, 0L);
     }
 
     private static String convertResult(double resultValue) {
