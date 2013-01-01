@@ -1,3 +1,5 @@
+![My image](https://raw.github.com/wtopolski/PolishNotation/master/docs/web_hi_res_512.png)
+
 PolishNotation
 ====================
 
