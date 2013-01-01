@@ -16,6 +16,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.analytics.tracking.android.EasyTracker;
+import com.google.analytics.tracking.android.Tracker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.wtopolski.android.polishnotation.support.NotationUtil;
@@ -99,6 +101,8 @@ public class MainActivity extends Activity implements CountListener {
         app.makeRequest(content);
 
         editSelectionUpdate();
+
+        EasyTracker.getInstance().activityStart(this);
     }
 
     public void contentOnClick(View view) {
@@ -133,6 +137,8 @@ public class MainActivity extends Activity implements CountListener {
 
         int position = edit.getSelectionStart();
         Properties.setEditValuePosition(position);
+
+        EasyTracker.getInstance().activityStop(this);
     }
 
     public void onKeyBoardButtonClick(View view) {
@@ -167,6 +173,13 @@ public class MainActivity extends Activity implements CountListener {
 
         prefixText.setText(prefix);
         postfixText.setText(postfix);
+
+        trackEvent(request, prefix, postfix);
+    }
+
+    private void trackEvent(String request, String prefix, String postfix) {
+        Tracker tracker = EasyTracker.getTracker();
+        tracker.trackEvent("calculations", "request", request + ";" + prefix + ";" + postfix, 0L);
     }
 
     private static String convertResult(double resultValue) {
